@@ -9,7 +9,11 @@
 
 ### 在Appdelegate中导入头文件并初始化SDK
 
+```
  #import "LinkedME.h"
+```
+
+
 初始化SDK
 LinkedME* linkedme = [LinkedME getInstance];
 
@@ -26,7 +30,10 @@ LinkedME* linkedme = [LinkedME getInstance];
 ## 加载广告视图
 
 ### 在需要加载广告的ViewController中导入头文件
- #import "LMActivity.h"
+
+```
+#import "LMActivity.h"
+```
  
 ### 加载广告
  
