@@ -6,3 +6,8 @@ LinkActive是LinkedME旗下专注于移动APP用户拉活的平台，帮助广�
 
 媒体方可以选择SDK或API形式接入LinkActive，具体接入规范参见：
 
+[媒体方接入规范](/standard.md)
+
+任何问题欢迎联系：support@linkedme.cc
+
+
