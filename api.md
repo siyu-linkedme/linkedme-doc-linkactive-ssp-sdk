@@ -155,7 +155,7 @@ http://a.lkme.cc/ad/openapi/record_status?imei=863267033980153&linkedme_key=7e28
 
 
 
-####Android端的示例代码
+###Android端的示例代码
 
 
 ```
@@ -226,7 +226,7 @@ private void openH5Url(String h5_url) {
 
 ```  
 
-####iOS端的逻辑
+###iOS端的逻辑
 
 1. 把广告主的Url Schemes写入配置文件（为了判断广告主的APP是否安装）
 
@@ -236,7 +236,7 @@ private void openH5Url(String h5_url) {
 
 4. 调用“/ad/openapi/record_status”接口向LinkedME服务器发送广告行为通知。
 
-####iOS端的示例代码
+###iOS端的示例代码
 
 ```
 /*
@@ -270,17 +270,13 @@ private void openH5Url(String h5_url) {
 }
 ```
 
-####发送回调通知说明：
+###发送回调通知说明：
 
     1）展示广告，status值为11
     2）点击广告，status值为12
     3）唤起APP，status值为13
     4）点击广告，没有唤起APP，status值为14
     5）点击广告，去下载APP，status值为15
-
-
-
-
 
 
 
