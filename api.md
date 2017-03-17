@@ -20,28 +20,28 @@
 
 |参数	|类型	|是否必填 | 描述|
 |---|---|---|---|
-|idfa|	String|	iOS必填 | iOS设备标识，原值
-|android_id|	String|	Android必填 | 设备AndroidID，原值
-|imei|	String|	Android必填 | 设备imei号，原值
-|linkedme_key|	String|	必填 | 标识媒体方，LinkedME提供
-|ad_position|	String|	必填 | 标识媒体方的广告位，LinkedME提供
-|os|	String|	必填 | 操作系统，iOS或者Android
-|os_version|	String|	可选 | 操作系统版本
-|mac|	String|	可选 | mac地址
-|device_model|	String|	可选 | 设备型号
-|scrro|	int|	可选 | 屏幕方向<br>1: 竖屏<br>2: 横屏
-|scrwidth|	int|	可选 | 设备物理地址，原值
-|scrheight|	int|	可选 | 操作系统版本
-|ip|	String|	可选 | 用户的ip地址，便于获取个性化广告
-|carrier|	int|	可选 | 运营商<br>0:unknown<br>1:中国移动<br>2:中国联通<br>3:中国电信
-|net|	int|	可选 | 联网方式<br>0:unknown<br>1:wifi<br>2:2G<br>3:3G<br>4:4G
-|ua|	String|	可选 | 用户浏览器的user-agent
-|app_version|	String|	可选 | App版本
-|tags|	String|	可选 | 个性化广告标签
-|lng|	String|	可选 | 经度，十进制保留6位小数，<br>西经用负数表示
-|lat|	String|	可选 | 纬度，十进制保留6位小数，<br>南纬用负数表示
-|timestamp|	long|	必填 | 时间戳，自1970年起的毫秒数
-|retry_times|	int|	必填 | 重试次数，默认为0
+|idfa|	String|	iOS必填 | iOS设备标识，原值|
+|android_id|	String|	Android必填 | 设备AndroidID，原值|
+|imei|	String|	Android必填 | 设备imei号，原值|
+|linkedme_key|	String|	必填 | 标识媒体方，LinkedME提供|
+|ad_position|	String|	必填 | 标识媒体方的广告位，LinkedME提供|
+|os|	String|	必填 | 操作系统，iOS或者Android|
+|os_version|	String|	可选 | 操作系统版本|
+|mac|	String|	可选 | mac地址|
+|device_model|	String|	可选 | 设备型号|
+|scrro|	int|	可选 | 屏幕方向<br>1: 竖屏<br>2: 横屏|
+|scrwidth|	int|	可选 | 设备物理地址，原值|
+|scrheight|	int|	可选 | 操作系统版本|
+|ip|	String|	可选 | 用户的ip地址，便于获取个性化广告|
+|carrier|	int|	可选 | 运营商<br>0:unknown<br>1:中国移动<br>2:中国联通<br>3:中国电信|
+|net|	int|	可选 | 联网方式<br>0:unknown<br>1:wifi<br>2:2G<br>3:3G<br>4:4G|
+|ua|	String|	可选 | 用户浏览器的user-agent|
+|app_version|	String|	可选 | App版本|
+|tags|	String|	可选 | 个性化广告标签|
+|lng|	String|	可选 | 经度，十进制保留6位小数，<br>西经用负数表示|
+|lat|	String|	可选 | 纬度，十进制保留6位小数，<br>南纬用负数表示|
+|timestamp|	long|	必填 | 时间戳，自1970年起的毫秒数|
+|retry_times|	int|	必填 | 重试次数，默认为0|
 
 * 调用示例
 
@@ -107,19 +107,19 @@ Android
 
 |参数	|类型	|   是否必填|描述|
 |---|---|---|---|
-|idfa|	String|	iOS必填| iOS设备标识，原值
-|android_id|	String|	Android必填|	设备AndroidID，原值
-|imei|	String|	Android必填|	设备imei，原值
-|linkedme_key|	String|	必填|	媒体方标识，与get_ad接口<br>里的linkedme_key值一致
-|ad_position|	String|	必填|	媒体方广告位ID，LinkedME提供，<br>与get_ad接口里的ad_position值一致
-|ad_code|	String|	必填|   广告ID，其值为get_ad接口返回结果<br>里的ad_code的值
-|os|	String|	必填|	操作系统,iOS或者Android
-|active_device_type|String|	必填|用哪个设备id提活的广告，</br>其值为get_ad接口返回结果<br>里的active_device_type值
-|status|	int|	必填|	广告行为，其值为11，12，13，14，15</br>11:展示广告</br>12:点击广告</br>13:唤起了App</br>14:点击之后没有唤起App<br>15:点击之后去下载了APP
-|request_id|	String|	必填|	追踪广告行为，其值为get_ad接口<br>返回结果里的request_id的值
-|timestamp|	long|	必填|	时间戳，自1970年起的毫秒数
-|retry_times|	int|	必填|	重试次数，默认为0
-|ip|	String|	可选 | 用户的ip地址
+|idfa|	String|	iOS必填| iOS设备标识，原值|
+|android_id|	String|	Android必填|	设备AndroidID，原值|
+|imei|	String|	Android必填|	设备imei，原值|
+|linkedme_key|	String|	必填|	媒体方标识，与get_ad接口<br>里的linkedme_key值一致|
+|ad_position|	String|	必填|	媒体方广告位ID，LinkedME提供，<br>与get_ad接口里的ad_position值一致|
+|ad_code|	String|	必填|   广告ID，其值为get_ad接口返回结果<br>里的ad_code的值|
+|os|	String|	必填|	操作系统,iOS或者Android|
+|active_device_type|String|	必填|用哪个设备id提活的广告，</br>其值为get_ad接口返回结果<br>里的active_device_type值|
+|status|	int|	必填|	广告行为，其值为11，12，13，14，15</br>11:展示广告</br>12:点击广告</br>13:唤起了App</br>14:点击之后没有唤起App<br>15:点击之后去下载了APP|
+|request_id|	String|	必填|	追踪广告行为，其值为get_ad接口<br>返回结果里的request_id的值|
+|timestamp|	long|	必填|	时间戳，自1970年起的毫秒数|
+|retry_times|	int|	必填|	重试次数，默认为0|
+|ip|	String|	可选 | 用户的ip地址| 
 
 * 调用示例
 
@@ -133,8 +133,8 @@ http://a.lkme.cc/ad/openapi/record_status?imei=863267033980153&linkedme_key=7e28
 }
 ```
 
-##备注
-###Android端的逻辑
+## 备注
+### Android端的逻辑
 1. 调用“/ad/openapi/get_ad”接口获取广告列表数据，LinkedME可能返回多条广告；获取数据后，根据pkg_name逐条判断应用是否已安装，直到获取第一条已安装广告数据，显示广告，若均未安装则不展示广告。
   
 2. 用户点击广告唤起APP
@@ -143,7 +143,7 @@ http://a.lkme.cc/ad/openapi/record_status?imei=863267033980153&linkedme_key=7e28
 3. 调用“/ad/openapi/record_status”接口向LinkedME服务器发送广告行为通知。
 
 
-###Android端的示例代码
+### Android端的示例代码
 
 ```
 //广告点击
@@ -211,11 +211,12 @@ private void openH5Url(String h5_url) {
     // 应用内WebView打开h5页面或在外部浏览器中打开h5页面
     // 若在应用内WebView中打开h5地址，h5地址可能是一个引导用户下载apk的地址，需要注意处理点击h5页面内apk下载链接的情况；
     // 若在外置浏览器中打开则无需处理。
-}   
+} 
+  
 ```
 
 
-###iOS端的逻辑
+### iOS端的逻辑
 
 1. 把广告主的Url Schemes写入配置文件（为了判断广告主的APP是否安装）
 
@@ -225,7 +226,7 @@ private void openH5Url(String h5_url) {
 
 4. 调用“/ad/openapi/record_status”接口向LinkedME服务器发送广告行为通知。
 
-###iOS端的示例代码
+### iOS端的示例代码
 
 ```
 /*
@@ -259,12 +260,12 @@ private void openH5Url(String h5_url) {
 }
 ```
 
-###发送回调通知说明：
+### 发送回调通知说明：
 
-    1）展示广告，status值为11
-    2）点击广告，status值为12
-    3）唤起APP，status值为13
-    4）点击广告，没有唤起APP，status值为14
-    5）点击广告，去下载APP，status值为15
+1）展示广告，status值为11
+2）点击广告，status值为12
+3）唤起APP，status值为13
+4）点击广告，没有唤起APP，status值为14
+5）点击广告，去下载APP，status值为15
 
 
