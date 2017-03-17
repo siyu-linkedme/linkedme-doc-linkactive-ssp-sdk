@@ -21,7 +21,11 @@ SDK和API接入的形式各有优劣，我们建议您使用SDK方式接入。
 ![](/assets/SDK-1.png)
 
 ## SDK接入文档
-查看SDK接入文档：https://www.linkedme.cc/docs/activesdk.html
+查看SDK接入文档：
+
+[iOS平台](/ios-sdk.md)
+
+[Android平台](/android-sdk.md)
 
 ## SDK接入注意事项
 接入前请向LinkedME要SDK包，以及linkedme_key值和ad_position的值。
@@ -63,7 +67,9 @@ SDK和API接入的形式各有优劣，我们建议您使用SDK方式接入。
 ![](/assets/API-1.png)
 
 ## API接入文档
-查看API接入文档：https://www.linkedme.cc/docs/activeapi.html
+
+[查看API接入文档](/api.md)
+
 ## 客户端处理逻辑
 <font color="red">Android端处理逻辑</font>：
 1. 调用“/ad/openapi/get_ad”接口获取广告列表数据，LinkedME可能返回多条广告；获取数据后，根据pkg_name逐条判断应用是否已安装，直到获取第一条已安装广告数据，显示广告，若均未安装则不展示广告。
