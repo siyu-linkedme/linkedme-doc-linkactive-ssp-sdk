@@ -156,7 +156,8 @@ http://a.lkme.cc/ad/openapi/record_status?imei=863267033980153&linkedme_key=7e28
 
 ### Android端的示例代码
 
-```
+```java
+
 //广告点击
 ad_click.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -225,6 +226,8 @@ private void openH5Url(String h5_url) {
 } 
   
 ```
+
+### iOS
 
 
 
