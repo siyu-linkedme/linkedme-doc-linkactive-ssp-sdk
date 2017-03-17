@@ -1,4 +1,5 @@
-### 1.引入jar包并依赖
+# Android平台SDK集成文档
+## 引入jar包并依赖
 将jar包复制到项目libs目录下，并添加到项目Module层的build.gradle依赖中，如下示例：
 
 ```
@@ -8,8 +9,8 @@ dependencies {
 }
 ```
 
-### 2.配置AndroidManifest.xml文件
-#### 2.1 添加LinkedME Key
+## 配置AndroidManifest.xml文件
+### 添加LinkedME Key
 在AndroidManifest.xml文件中添加LinkedME_Key，如下示例：  
 
 ```
@@ -21,7 +22,7 @@ dependencies {
     android:value="替换为后台设置页面中的LinkedME Key" />
 </application>
 ```
-#### 2.2 配置点击广告后显示h5页面Activity
+### 配置点击广告后显示h5页面Activity
 ```
 <activity
     android:name="cc.lkme.linkactive.view.LMH5Activity"
@@ -31,7 +32,7 @@ dependencies {
     android:windowSoftInputMode="adjustResize|stateHidden"/>
 
 ```
-#### 2.3 配置点击广告后下载apk的Service
+### 配置点击广告后下载apk的Service
 ```
  <service
     android:name="cc.lkme.linkactive.network.LMDownloadService"
@@ -47,7 +48,7 @@ dependencies {
 </paths>
 ```
 
-### 3.初始化SDK
+## 初始化SDK
 ```
 if (BuildConfig.DEBUG) {
     //设置debug模式下打印LinkedME日志
@@ -57,8 +58,8 @@ if (BuildConfig.DEBUG) {
 }
 ```
 
-### 4.添加广告视图
-#### 4.1 在需要显示广告的布局文件中添加广告视图
+## 添加广告视图
+### 在需要显示广告的布局文件中添加广告视图
  ```
   <cc.lkme.linkactive.view.LMImageView
        android:id="@+id/lm_ad"
@@ -67,7 +68,7 @@ if (BuildConfig.DEBUG) {
        
  ```
  
-#### 4.2 加载广告
+### 加载广告
 ```
 LMImageView lm_ad = (LMImageView) findViewById(R.id.lm_ad);
 lm_ad.getAdWithFrame("分配的广告id", "用户标签1,用户标签2", new OnGetAdListener() {
@@ -84,7 +85,7 @@ lm_ad.getAdWithFrame("分配的广告id", "用户标签1,用户标签2", new OnG
 });
 ```
 
-### 5. 方法说明
+## 方法说明
 ```
 /**
  * <p>为该LMImageView设置广告id，并添加用户标签及地理位置信息，自动加载显示广告</p>
