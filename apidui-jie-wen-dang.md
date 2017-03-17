@@ -7,14 +7,14 @@
 
 -------
 
-* ### http://a.lkme.cc/ad/openapi/get_ad
+### http://a.lkme.cc/ad/openapi/get_ad
 
-+ method: `GET`
+* method: `GET`
 
-+ description
+* description
   获取广告接口
 
-+ 参数说明
+* 参数说明
 
 
 |参数	|类型	|是否必填 | 描述|
@@ -42,11 +42,11 @@
 |timestamp|	long|	必填 | 时间戳，自1970年起的毫秒数
 |retry_times|	int|	必填 | 重试次数，默认为0
 
-+ 调用示例
+* 调用示例
 
 http://a.lkme.cc/ad/openapi/get_ad?android_id=&imei=354707046861622&linkedme_key=7e289a2484f4368dbafbd1e5c7d06903&ad_position=11111_0&tags=&lng=-1&lat=-1&device_model=Nexus+5&app_version=1.0.8&carrier=1&net=1&ua=Mozilla%2F5.0+%28Linux%3B+Android+6.0.1%3B+OPPO+R9s+Plus+Build%2FMMB29M%3B+wv%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Version%2F4.0+Chrome%2F46.0.2490.76+Mobile+Safari%2F537.36&os=Android&os_version=6.0.1&retry_times=0&timestamp=1484560913242
 
-+ response
+* response
 
 iOS
 
@@ -94,14 +94,14 @@ Android
 ```
 
 
-* ### http://a.lkme.cc/ad/openapi/record_status
+### http://a.lkme.cc/ad/openapi/record_status
 
-+ method: `GET`
+* method: `GET`
 
-+ description 
+* description 
 回调广告行为；媒体方获取广告后，用户对广告的行为，媒体方需要告知LinkedME。
 
-+ 参数说明
+* 参数说明
 
 |参数	|类型	|   是否必填|描述|
 |---|---|---|---|
@@ -119,11 +119,11 @@ Android
 |retry_times|	int|	必填|	重试次数，默认为0
 |ip|	String|	可选 | 用户的ip地址
 
-+ 调用示例
+* 调用示例
 
 http://a.lkme.cc/ad/openapi/record_status?imei=863267033980153&linkedme_key=7e289a2484f4368dbafbd1e5c7d06903&ad_position=11111_0&os=Android&ad_code=11102_0&active_device_type=imei&status=12&request_id=c2e2849252a906b8816ab12fc5cf8bf7&timestamp=1487759017154
 
-+ response
+* response
 
 ```
 {
@@ -131,8 +131,8 @@ http://a.lkme.cc/ad/openapi/record_status?imei=863267033980153&linkedme_key=7e28
 }
 ```
 
-###备注
-####Android端的逻辑
+##备注
+###Android端的逻辑
 1. 调用“/ad/openapi/get_ad”接口获取广告列表数据，LinkedME可能返回多条广告；获取数据后，根据pkg_name逐条判断应用是否已安装，直到获取第一条已安装广告数据，显示广告，若均未安装则不展示广告。
   
 2. 用户点击广告唤起APP
@@ -141,7 +141,7 @@ http://a.lkme.cc/ad/openapi/record_status?imei=863267033980153&linkedme_key=7e28
 3. 调用“/ad/openapi/record_status”接口向LinkedME服务器发送广告行为通知。
 
 
-####Android端的示例代码
+###Android端的示例代码
 
 ```
 //广告点击
@@ -213,7 +213,7 @@ private void openH5Url(String h5_url) {
 ```
 
 
-####iOS端的逻辑
+###iOS端的逻辑
 
 1. 把广告主的Url Schemes写入配置文件（为了判断广告主的APP是否安装）
 
@@ -223,7 +223,7 @@ private void openH5Url(String h5_url) {
 
 4. 调用“/ad/openapi/record_status”接口向LinkedME服务器发送广告行为通知。
 
-####iOS端的示例代码
+###iOS端的示例代码
 
 ```
 /*
@@ -257,7 +257,7 @@ private void openH5Url(String h5_url) {
 }
 ```
 
-####发送回调通知说明：
+###发送回调通知说明：
 
     1）展示广告，status值为11
     2）点击广告，status值为12
