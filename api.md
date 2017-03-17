@@ -157,6 +157,7 @@ http://a.lkme.cc/ad/openapi/record_status?imei=863267033980153&linkedme_key=7e28
 
 ####Android端的示例代码
 
+
 ```
 //广告点击
 ad_click.setOnClickListener(new View.OnClickListener() {
@@ -220,11 +221,14 @@ private void openAppWithPN(String packageName, String uriString, String h5_url, 
  * @param h5_url h5链接
  */
 private void openH5Url(String h5_url) {  
-    // 应用内WebView打开h5页面或在外部浏览器中打开h5页面
-    // 若在应用内WebView中打开h5地址，h5地址可能是一个引导用户下载apk的地址，需要注意处理点击h5页面内apk下载链接的情况；
-    // 若在外置浏览器中打开则无需处理。
+    //应用内WebView打开h5页面或在外部浏览器中打开h5页面
+    //若在应用内WebView中打开h5地址，h5地址可能是一个引导用户下载apk的地址，需要注意处理点击h5页面内apk下载链接的情况；
+    //若在外置浏览器中打开则无需处理。
 }   
+
 ```
+
+
 
 
 
