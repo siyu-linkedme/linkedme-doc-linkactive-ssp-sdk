@@ -154,80 +154,7 @@ http://a.lkme.cc/ad/openapi/record_status?imei=863267033980153&linkedme_key=7e28
 3. 调用“/ad/openapi/record_status”接口向LinkedME服务器发送广告行为通知。
 
 
-### Android端的示例代码
 
-```java
-
-//广告点击
-ad_click.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view){
-    //此处通知服务器点击了广告，修改status为12
-    String uriString = "lkmedemo://?click_id=G4LCXAjn7";
-    String packageName = "com.microquation.linkedme";
-    String h5_url = "http://www.linkedme.cc";
-    String apk_url = "https://github.com/WFC-LinkedME/LinkedME-Android-Deep-Linking-Demo/blob/master/LinkedME-Android-Demo.apk?raw=true";
-    try {
-        Intent intent = Intent.parseUri(uriString, Intent.URI_INTENT_SCHEME);
-        intent.setPackage(packageName);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        ResolveInfo resolveInfo = DemoActivity.this.getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
-        if (resolveInfo != null) {
-            startActivity(intent);
-            //此处通知服务器唤起了APP，修改status为13
-        } else {
-            openAppWithPN(packageName, uriString, h5_url, apk_url);
-        }
-    } catch (URISyntaxException ignore) {
-        openAppWithPN(packageName, uriString, h5_url, apk_url);
-    }
-  }  
-});
-
-/**
- * 通过包名唤起APP
- *
- *@param packageName 包名
- * @param uriString   uri scheme
- * @param h5_url      h5链接
- * @param apk_url     apk下载地址  */
-private void openAppWithPN(String packageName, String uriString, String h5_url, String apk_url) {
-    //如果通过uri scheme没有唤起APP，则尝试包名唤起APP
-    Intent resolveIntent = DemoActivity.this.getPackageManager().getLaunchIntentForPackage(packageName);
-    // 启动目标应用
-    if (resolveIntent != null) {
-        resolveIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        resolveIntent.setData(Uri.parse(uriString));
-        DemoActivity.this.startActivity(resolveIntent);
-        //此处通知服务器唤起了APP，修改status为13
-    } else {
-    //此处通知服务器未唤起APP，修改status为14
-    //建议未唤起APP打开h5页面的同时下载apk，引导用户安装
-    if (!TextUtils.isEmpty(h5_url)) {
-        openH5Url(h5_url);
-    }
-    if (!TextUtils.isEmpty(apk_url)) {
-    //此处通知服务器未唤起APP，引导用户下载APP，修改status为15
-    // 应用内开启服务下载apk文件或通过外部浏览器下载apk文件
-    }
-  }
-}
-
-/**
- *
- * 打开h5链接
- *
- * @param h5_url h5链接
- */
-private void openH5Url(String h5_url) {  
-    // 应用内WebView打开h5页面或在外部浏览器中打开h5页面
-    // 若在应用内WebView中打开h5地址，h5地址可能是一个引导用户下载apk的地址，需要注意处理点击h5页面内apk下载链接的情况；
-    // 若在外置浏览器中打开则无需处理。
-} 
-  
-```
-
-### iOS
 
 
 
