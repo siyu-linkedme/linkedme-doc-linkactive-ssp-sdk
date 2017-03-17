@@ -270,7 +270,7 @@ private void openH5Url(String h5_url) {
 }
 ```
 
-###发送回调通知说明：
+###发送回调通知说明
 
     1）展示广告，status值为11
     2）点击广告，status值为12
