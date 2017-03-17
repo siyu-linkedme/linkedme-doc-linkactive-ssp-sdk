@@ -19,6 +19,8 @@ SDK和API接入的形式各有优劣，我们建议您使用SDK方式接入。
 # SDK接入
 ## SDK接入流程
 
+![](/assets/SDK接入 (1).png)
+
 ## SDK接入文档
 查看SDK接入文档：https://www.linkedme.cc/docs/activesdk.html
 
@@ -46,6 +48,7 @@ SDK和API接入的形式各有优劣，我们建议您使用SDK方式接入。
 1）把广告主的Url Schemes写入配置文件（为了判断广告主的APP是否安装）；只有安装了广告的APP才展示广告，点击广告能唤起APP，唤起APP后才能有收益；(图4.1)  
 2）能获取到唤起广告主APP的状态，并回传给LinkActive；因为这是结算依据。
 
+![](/assets/WX20170317-140024@2x.png)
 
 <font color="red">注意事项 1</font>：  
 如果以上两个条件不满足，需要客户端做出相应修改，并在AppStore中更新版本。
