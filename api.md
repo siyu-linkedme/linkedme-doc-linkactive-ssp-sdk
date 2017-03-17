@@ -144,5 +144,15 @@ http://a.lkme.cc/ad/openapi/record_status?imei=863267033980153&linkedme_key=7e28
 }
 ```
 
+## 备注
+### Android端的逻辑
+1. 调用“/ad/openapi/get_ad”接口获取广告列表数据，LinkedME可能返回多条广告；获取数据后，根据pkg_name逐条判断应用是否已安装，直到获取第一条已安装广告数据，显示广告，若均未安装则不展示广告。
+  
+2. 用户点击广告唤起APP
+  当用户点击广告时，通过uri scheme唤起APP(如果第一步展示了未安装的APP广告，跳转到h5地址，建议同时后台下载apk包)。
+  
+3. 调用“/ad/openapi/record_status”接口向LinkedME服务器发送广告行为通知。
+
+
 
 
