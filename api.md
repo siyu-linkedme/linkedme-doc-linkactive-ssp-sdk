@@ -213,6 +213,15 @@ private void openAppWithPN(String packageName, String uriString, String h5_url, 
     }
   }
 }
+/**
+ * 打开h5链接
+ * @param h5_url h5链接
+ */
+private void openH5Url(String h5_url) {  
+    // 应用内WebView打开h5页面或在外部浏览器中打开h5页面
+    // 若在应用内WebView中打开h5地址，h5地址可能是一个引导用户下载apk的地址，需要注意处理点击h5页面内apk下载链接的情况；
+    // 若在外置浏览器中打开则无需处理。
+}
 
 ```  
 阿拉斯加的弗拉
