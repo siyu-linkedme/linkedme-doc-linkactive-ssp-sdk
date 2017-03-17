@@ -6,4 +6,6 @@
 
 * [媒体方接入规范](standard.md)
 * [API](api.md)
+* [SDK-integration.md](sdk-integrationmd.md)
+* [Android](android-sdk.md)
 
