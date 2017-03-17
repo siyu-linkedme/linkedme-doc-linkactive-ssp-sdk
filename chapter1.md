@@ -19,7 +19,7 @@ SDK和API接入的形式各有优劣，我们建议您使用SDK方式接入。
 # SDK接入
 ## SDK接入流程
 
-![](/assets/SDK接入 (1).png)
+![](/assets/SDK-1.png)
 
 ## SDK接入文档
 查看SDK接入文档：https://www.linkedme.cc/docs/activesdk.html
@@ -60,6 +60,8 @@ SDK和API接入的形式各有优劣，我们建议您使用SDK方式接入。
 目前我们可以只做第一种处理；第二种处理的逻辑可以先埋进去，方便以后做用户拉新。
 
 ## API接入流程
+
+![](/assets/API-1.png)
 
 ## API接入文档
 查看API接入文档：https://www.linkedme.cc/docs/activeapi.html
