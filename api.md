@@ -188,9 +188,6 @@ ad_click.setOnClickListener(new View.OnClickListener() {
 /**
  * 通过包名唤起APP
  * @param packageName 包名
- * @param uriString   uri scheme
- * @param h5_url      h5链接
- * @param apk_url     apk下载地址  
  */
 private void openAppWithPN(String packageName, String uriString, String h5_url, String apk_url) {
     //如果通过uri scheme没有唤起APP，则尝试包名唤起APP
