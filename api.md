@@ -187,7 +187,6 @@ ad_click.setOnClickListener(new View.OnClickListener() {
 
 /**
  * 通过包名唤起APP
- *
  * @param packageName 包名
  * @param uriString   uri scheme
  * @param h5_url      h5链接
