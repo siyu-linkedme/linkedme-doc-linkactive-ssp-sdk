@@ -227,16 +227,6 @@ private void openH5Url(String h5_url) {
 ```
 
 
-### iOS端的逻辑
-
-1. 把广告主的Url Schemes写入配置文件（为了判断广告主的APP是否安装）
-
-2. 调用“/ad/openapi/get_ad”接口获取广告列表数据，LinkedME可能返回多条广告；获取数据后，根据scheme逐条判断应用是否已安装，直到获取第一条已安装广告数据，显示广告，若均未安装则不展示广告。
-
-3. 用户点击广告，通过scheme唤起APP(如果第二步展示了未安装的APP广告，点击后跳转到AppStore；
-
-4. 调用“/ad/openapi/record_status”接口向LinkedME服务器发送广告行为通知。
-
 
 
 
