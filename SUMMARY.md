@@ -5,4 +5,5 @@
 ## 接入文档
 
 * [媒体方接入规范](standard.md)
+* [API](api.md)
 
