@@ -186,7 +186,7 @@ ad_click.setOnClickListener(new View.OnClickListener() {
 });
 
 /**
-alsjdfljasldkfjalsdjkf
+*alsjdfljasldkfjalsdjkf
  */
 private void openAppWithPN(String packageName, String uriString, String h5_url, String apk_url) {
     //如果通过uri scheme没有唤起APP，则尝试包名唤起APP
