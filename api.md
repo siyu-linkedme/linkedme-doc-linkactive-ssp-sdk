@@ -213,6 +213,7 @@ private void openAppWithPN(String packageName, String uriString, String h5_url, 
     }
   }
 }
+
 /**
  * 打开h5链接
  * @param h5_url h5链接
@@ -224,8 +225,58 @@ private void openH5Url(String h5_url) {
 }
 
 ```  
-阿拉斯加的弗拉
-jsa
+
+####iOS端的逻辑
+
+1. 把广告主的Url Schemes写入配置文件（为了判断广告主的APP是否安装）
+
+2. 调用“/ad/openapi/get_ad”接口获取广告列表数据，LinkedME可能返回多条广告；获取数据后，根据scheme逐条判断应用是否已安装，直到获取第一条已安装广告数据，显示广告，若均未安装则不展示广告。
+
+3. 用户点击广告，通过scheme唤起APP(如果第二步展示了未安装的APP广告，点击后跳转到AppStore；
+
+4. 调用“/ad/openapi/record_status”接口向LinkedME服务器发送广告行为通知。
+
+####iOS端的示例代码
+
+```
+/*
+    通过Url Schemes唤起App
+    @param scheme url schemes
+    @param adid appid
+ */
+- (void)openScheme:(NSString *)scheme AndAdid:(NSUInteger)adid{
+    
+    UIApplication *application = [UIApplication sharedApplication];
+    NSURL *URL = [NSURL URLWithString:scheme];
+    
+    if ([application respondsToSelector:@selector(openURL:options:completionHandler:)]) {
+        [application openURL:URL options:@{}
+           completionHandler:^(BOOL success) {
+               [self recordStatus:[NSString stringWithFormat:@"%d",success] withAdid:adid];
+               if (success) {
+                   //拉活成功,此处通知服务器唤起了APP，status为13
+               }else{
+                   //拉活失败,此处通知服务器未唤起APP，status为14
+                   
+                   //这里可以做打开h5页和打开AppStore动作
+               }
+           }];
+    } else {
+        BOOL success = [application openURL:URL];
+        //App拉活失败,此处通知服务器未唤起APP，status为14
+        //判断是否在app内打开AppStore
+        [self showStoreProductWithAdid:adid];
+    }
+}
+```
+
+####发送回调通知说明：
+
+    1）展示广告，status值为11
+    2）点击广告，status值为12
+    3）唤起APP，status值为13
+    4）点击广告，没有唤起APP，status值为14
+    5）点击广告，去下载APP，status值为15
 
 
 
