@@ -1,7 +1,6 @@
 # Summary
 
 * [LinkActive介绍](README.md)
-* [API文档.md](apiwen-6863-md.md)
 
 ## 接入文档
 
