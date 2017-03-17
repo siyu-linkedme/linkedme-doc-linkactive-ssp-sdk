@@ -8,7 +8,7 @@
             }
         },
 
-    "plugins": [ "copy-code-button","codetabs","anchor-navigation-ex","-search","-lunr","search-pro","ga"], 
+    "plugins": [ "copy-code-button","codetabs","anchor-navigation-ex","-search","-lunr","search-pro","ga","-sharing], 
     "pluginsConfig": {  
              
              "anchor-navigation-ex": {
@@ -16,16 +16,6 @@
                 "tocLevel1Icon": "fa fa-hand-o-right",
                 "tocLevel2Icon": "fa fa-hand-o-right",
                 "tocLevel3Icon": "fa fa-hand-o-right"
-            },
-            
-            "sharing": {
-                "facebook": false,
-                "twitter": false,
-                "google": false,
-                "weibo": true,
-                "instapaper": false,
-                "vk": false,
-                "all": []            
             },
         
         "search-pro": {
