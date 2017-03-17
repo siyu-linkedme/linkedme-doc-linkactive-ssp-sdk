@@ -1,3 +1,8 @@
-# My Awesome Book
+# LinkActive
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+LinkActive是LinkedME旗下专注于移动APP用户拉活的平台，帮助广告主解决沉默用户的唤醒及定向用户的拉新，帮助媒体方解决更加原生广告的流量变现。
+
+## LinkActive媒体方平台
+
+媒体方可以选择SDK或API形式接入LinkActive，具体接入规范参见：
+

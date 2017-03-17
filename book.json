@@ -1,0 +1,43 @@
+{
+    "title": "LinkActive 媒体方文档",
+    "description": "LinkActive接入文档",
+    "language": "zh-hans",
+    "links": {
+        "sidebar": {
+            "LinkedME文档中心": "https://linkedme.gitbooks.io/linkactive/content/"
+            }
+        },
+
+    "plugins": [ "copy-code-button","codetabs","anchor-navigation-ex","-search","-lunr","search-pro","ga"], 
+    "pluginsConfig": {  
+             
+             "anchor-navigation-ex": {
+                "isRewritePageTitle": true,
+                "isShowTocTitleIcon": true,
+                "tocLevel1Icon": "fa fa-hand-o-right",
+                "tocLevel2Icon": "fa fa-hand-o-right",
+                "tocLevel3Icon": "fa fa-hand-o-right"
+            },
+            
+            "sharing": {
+                "facebook": false,
+                "twitter": false,
+                "google": false,
+                "weibo": true,
+                "instapaper": false,
+                "vk": false,
+                "all": []            
+            },
+        
+        "search-pro": {
+        "cutWordLib": "nodejieba",
+        "defineWord" : ["Gitbook Use"]
+    },
+    
+    "ga": {
+        "token": "UA-93686943-1"
+    }
+    
+    }
+    
+}
