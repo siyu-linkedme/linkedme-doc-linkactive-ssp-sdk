@@ -185,6 +185,35 @@ ad_click.setOnClickListener(new View.OnClickListener() {
   }  
 });
 
+/**
+ * 通过包名唤起APP
+ *
+ * @param packageName 包名
+ * @param uriString   uri scheme
+ * @param h5_url      h5链接
+ * @param apk_url     apk下载地址  
+ */
+private void openAppWithPN(String packageName, String uriString, String h5_url, String apk_url) {
+    //如果通过uri scheme没有唤起APP，则尝试包名唤起APP
+    Intent resolveIntent = DemoActivity.this.getPackageManager().getLaunchIntentForPackage(packageName);
+    // 启动目标应用
+    if (resolveIntent != null) {
+        resolveIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        resolveIntent.setData(Uri.parse(uriString));
+        DemoActivity.this.startActivity(resolveIntent);
+        //此处通知服务器唤起了APP，修改status为13
+    } else {
+    //此处通知服务器未唤起APP，修改status为14
+    //建议未唤起APP打开h5页面的同时下载apk，引导用户安装
+    if (!TextUtils.isEmpty(h5_url)) {
+        openH5Url(h5_url);
+    }
+    if (!TextUtils.isEmpty(apk_url)) {
+    //此处通知服务器未唤起APP，引导用户下载APP，修改status为15
+    // 应用内开启服务下载apk文件或通过外部浏览器下载apk文件
+    }
+  }
+}
 
 ```  
 阿拉斯加的弗拉
