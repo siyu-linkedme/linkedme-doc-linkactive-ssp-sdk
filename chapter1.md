@@ -73,11 +73,11 @@ SDK和API接入的形式各有优劣，我们建议您使用SDK方式接入。
 3. 用户点击广告，通过scheme唤起APP(如果第二步展示了未安装的APP广告，点击后跳转到AppStore；
 4. 调用“/ad/openapi/record_status”接口向LinkedME服务器发送广告行为通知。
 
-发送回调通知说明：
-1）展示广告，status值为11
-2）点击广告，status值为12
-3）唤起APP，status值为13
-4）点击广告，没有唤起APP，status值为14
+发送回调通知说明：  
+1）展示广告，status值为11  
+2）点击广告，status值为12  
+3）唤起APP，status值为13  
+4）点击广告，没有唤起APP，status值为14  
 5）点击广告，去下载APP，status值为15
 
 
