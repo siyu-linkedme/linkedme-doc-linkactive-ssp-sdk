@@ -45,7 +45,13 @@
 
 * 调用示例
 
+
+
+```
 http://a.lkme.cc/ad/openapi/get_ad?android_id=&imei=354707046861622&linkedme_key=7e289a2484f4368dbafbd1e5c7d06903&ad_position=11111_0&tags=&lng=-1&lat=-1&device_model=Nexus+5&app_version=1.0.8&carrier=1&net=1&ua=Mozilla%2F5.0+%28Linux%3B+Android+6.0.1%3B+OPPO+R9s+Plus+Build%2FMMB29M%3B+wv%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Version%2F4.0+Chrome%2F46.0.2490.76+Mobile+Safari%2F537.36&os=Android&os_version=6.0.1&retry_times=0&timestamp=1484560913242
+```
+
+
 
 * response
 
@@ -123,7 +129,13 @@ Android
 
 * 调用示例
 
+
+
+```
 http://a.lkme.cc/ad/openapi/record_status?imei=863267033980153&linkedme_key=7e289a2484f4368dbafbd1e5c7d06903&ad_position=11111_0&os=Android&ad_code=11102_0&active_device_type=imei&status=12&request_id=c2e2849252a906b8816ab12fc5cf8bf7&timestamp=1487759017154
+```
+
+
 
 * response
 
