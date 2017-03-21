@@ -1,6 +1,6 @@
 # LinkActive
 
-LinkActive是LinkedME旗下专注于移动APP用户拉活的平台，帮助广告主解决沉默用户的唤醒及定向用户的拉新，帮助媒体方解决更加原生广告的流量变现。
+LinkActive是[LinkedME](http://www.linkedme.cc)旗下专注于移动APP用户拉活的平台，帮助广告主解决沉默用户的唤醒及定向用户的拉新，帮助媒体方解决更加原生广告的流量变现。
 
 ## LinkActive媒体方平台
 
