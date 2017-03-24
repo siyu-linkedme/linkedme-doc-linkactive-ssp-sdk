@@ -66,6 +66,7 @@ iOS
     "img_url":"xx", //[String]广告图片素材地址
     "h5_url":"xx",  //[String]广告内容页的h5地址或者引导用户下载的页面地址
     "active_device_type": "idfa"; //[String]获取到广告的id类型,idfa或androidId或imei，iOS为默认值idfa
+    "ad_content_id": "1115";    //[int]广告素材的ID
     "ad_content": {
         "title":"xx",   //广告标题
         "sub_title":"", //广告副标题
@@ -89,6 +90,7 @@ Android
     "h5_url":"xx",  //[String]广告内容页的h5地址或者引导用户下载的页面地址
     "apk_url":"xx", //[String]apk包的下载地址
     "active_device_type": "xx"; //[String]获取到广告的设备id类型,idfa或androidId或imei，Android系统为androidId或者imei
+    "ad_content_id": "1115";    //[int]广告素材的ID
     "ad_content": {
         "title":"xx",   //广告标题
         "sub_title":"", //广告副标题
@@ -118,6 +120,7 @@ Android
 |linkedme_key|	String|	必填|	媒体方标识，与get_ad接口<br>里的linkedme_key值一致|
 |ad_position|	String|	必填|	媒体方广告位ID，LinkedME提供，<br>与get_ad接口里的ad_position值一致|
 |ad_code|	String|	必填|   广告ID，其值为get_ad接口返回结果<br>里的ad_code的值|
+|ad_content_id|int|	必填|   广告素材ID，其值为get_ad接口返回结果<br>里的ad_content_id的值|
 |os|	String|	必填|	操作系统,iOS或者Android|
 |active_device_type|String|	必填|用哪个设备id提活的广告，</br>其值为get_ad接口返回结果<br>里的active_device_type值|
 |status|	int|	必填|	广告行为，其值为11，12，13，14，15</br>11:展示广告</br>12:点击广告</br>13:唤起了App</br>14:点击之后没有唤起App<br>15:点击之后去下载了APP|
