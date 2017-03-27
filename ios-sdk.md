@@ -54,7 +54,7 @@ LinkedME* linkedme = [LinkedME getInstance];
 
 | 参数 | 说明 | 备注 |
 | --- | --- | --- |
-| status | 广告状态，当前是否有广告；</br>YES为有广告，NO无广告 |   |
+| status | 广告状态，当前是否有广告； </br> YES为有广告，NO无广告 |   |
 | content | 广告内容，如标题副标题等信息|   |
 | tags | 个性化广告需求;</br>向服务器发送希望的广告内容或者类型;</br>用逗号分隔，没有可不填|如a,b,c|
 | adid | 广告位信息，根据Adid返回对应的广告素材和内容|LinkedME提供   |
