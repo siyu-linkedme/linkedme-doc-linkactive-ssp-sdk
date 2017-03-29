@@ -15,7 +15,7 @@
     1.请求广告资源<br/>
     2.回调广告行为（建议由媒体方服务端拼接参数返回给app，再由app向LinkActive Servers发起请求）
     
-    例：http://a.lkme.cc/ad/openapi/record_status&ad_code=11102_0&active_device_type=imei...&status=13(当前状态根据实际情况填写，从服务端拿到链接后拼接status状态)
+   `例：http://a.lkme.cc/ad/openapi/record_status&ad_code=11102_0&active_device_type=imei...&status=13(当前状态根据实际情况填写，从服务端拿到链接后拼接status状态)`
 
 
 
