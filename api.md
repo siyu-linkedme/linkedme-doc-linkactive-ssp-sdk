@@ -7,6 +7,19 @@
 
 -------
 
+##LinkActive交互图
+![](/assets/媒体接入图解.png)
+
+
+* 简要说明
+
+    1.请求广告资源
+    2.回调广告行为（建议由媒体放服务端拼接参数返回给app，再由app向LinkActive Servers发起请求）
+    
+    例：http://a.lkme.cc/ad/openapi/record_status?status=13(根据实际情况填写)+&ad_code=11102_0&active_device_type=imei...(服务端拼接好的参数)
+
+
+
 ## 获取广告接口
 * http://a.lkme.cc/ad/openapi/get_ad
 
