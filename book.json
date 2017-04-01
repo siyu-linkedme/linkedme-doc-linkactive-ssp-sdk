@@ -8,7 +8,7 @@
             }
         },
 
-    "plugins": [ "copy-code-button","codetabs","anchor-navigation-ex","-search","-lunr","search-pro","ga","-sharing","expandable-chapters"], 
+    "plugins": [ "copy-code-button","codetabs","anchor-navigation-ex","-search","-lunr","search-pro","ga","-sharing","expandable-chapters","3-ba"], 
     "pluginsConfig": {  
              
              "anchor-navigation-ex": {
@@ -24,8 +24,13 @@
     },
     
     "ga": {
-        "token": "UA-93686943-1"
-    }
+        "token": "UA-93686943-3"
+    },
+    
+    "3-ba": {
+            "token": "7ea0cc85394c281edc794374a2e97576"
+        }
+
     
     }
     
