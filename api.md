@@ -140,6 +140,7 @@ Android
 |timestamp|	long|	必填|	时间戳，自1970年起的毫秒数|
 |retry_times|	int|	必填|	重试次数，默认为0|
 |ip|	String|	可选 | 用户的ip地址| 
+|debug|	boolean|	可选|	debug模式，调用回调接口后不删除该条广告，调试时建议设置为true，默认为false<br/>true:debug模式，不删除广告<br/>false:删除广告，下次请求广告不再显示该条广告|
 
 * 调用示例
 
