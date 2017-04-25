@@ -8,7 +8,7 @@
 -------
 
 ##LinkActive交互图
-![](/assets/QQ20170329-110010.png)
+![](/assets/Screen Shot 2017-04-25 at 6.40.53 PM.png)
 
 * 简要说明
 
