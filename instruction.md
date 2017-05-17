@@ -9,6 +9,7 @@ LinkActive的SSP平台是为方便媒体方自行管理广告位及查看广告�
 
 ## 进入后台
 审核通过后登录您的LinkedME账号，通过左侧的引导进入媒体方平台，如图所示：
+
 ![](/assets/dashboard.png)
 
 后台包括如下内容：<br>
