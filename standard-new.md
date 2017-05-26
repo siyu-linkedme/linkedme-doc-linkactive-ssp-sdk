@@ -37,6 +37,7 @@ LinkActive的SDK请求广告时，返回的是按照优先级排序的每个广�
 
 # API接入
 ## API接入前提
+
 <font color="red">对于Android平台</font>，如果您想要采用API接入，那么您的APP<font color="red">需要满足两个条件</font>：
 
 1）能检测广告主的APP是否已安装；因为只有安装了的用户才展示广告，点击广告能唤起APP，唤起APP后才能有收益；  
@@ -76,7 +77,7 @@ LinkActive的接口请求广告时，返回的是按照优先级排序的每个�
 
 客户端从当次请求的广告列表中<font color="red">删除该条广告，并将其余广告向前顺移</font>
 
-![](/assets/广告展示处理流程.png)
+![](/assets/ad-show.png)
 
 
 
