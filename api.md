@@ -42,8 +42,8 @@
 |mac|	String|	可选 | mac地址|
 |device_model|	String|	可选 | 设备型号|
 |scrro|	int|	可选 | 屏幕方向<br>1: 竖屏<br>2: 横屏|
-|scrwidth|	int|	可选 | 设备物理地址，原值|
-|scrheight|	int|	可选 | 操作系统版本|
+|scrwidth|	int|	可选 | 屏幕宽度|
+|scrheight|	int|	可选 | 屏幕高度|
 |ip|	String|	可选 | 用户的ip地址，便于获取个性化广告|
 |carrier|	int|	可选 | 运营商<br>0:unknown<br>1:中国移动<br>2:中国联通<br>3:中国电信|
 |net|	int|	可选 | 联网方式<br>0:unknown<br>1:wifi<br>2:2G<br>3:3G<br>4:4G|
