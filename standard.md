@@ -18,7 +18,7 @@ SDK和API接入的形式各有优劣，我们建议您使用SDK方式接入。
 # SDK接入
 ## SDK接入流程
 
-![](/assets/SDK-1.png)
+![](/assets/SDK.png)
 
 ## SDK接入文档
 查看SDK接入文档：
