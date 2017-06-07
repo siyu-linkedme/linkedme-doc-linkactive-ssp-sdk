@@ -10,7 +10,7 @@
 * 能检测广告主的APP是否安装，并能直接唤起广告主APP
 * 能获取到唤起广告主APP的状态，并回传给LinkActive
 
-具体要求参见：[API接入前提](/standard.md#API接入前提)
+具体要求参见：[API接入前提](/standard.md#api接入前提)
 
 # 整体接入流程示意
 ![](/assets/API-3.png)
