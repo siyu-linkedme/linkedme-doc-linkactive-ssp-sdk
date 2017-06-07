@@ -196,8 +196,8 @@ private void openH5Url(String h5_url) {
 |idfa|	String|	iOS必填 | iOS设备标识，原值|
 |android_id|	String|	Android必填 | 设备AndroidID，原值|
 |imei|	String|	Android必填 | 设备imei号，原值|
-|linkedme_key|	String|	必填 | 标识媒体方，LinkedME提供|
-|ad_position|	String|	必填 | 标识媒体方的广告位，LinkedME提供|
+|linkedme_key|	String|	必填 | 标识媒体方，LinkedME提供，通过SSP后台-应用管理界面获得|
+|ad_position|	String|	必填 | 标识媒体方的广告位，LinkedME提供，通过SSP后台广告位概览界面获得|
 |os|	String|	必填 | 操作系统，iOS或者Android|
 |os_version|	String|	可选 | 操作系统版本|
 |mac|	String|	可选 | mac地址|
@@ -292,13 +292,13 @@ Android
 |idfa|	String|	iOS必填| iOS设备标识，原值|
 |android_id|	String|	Android必填|	设备AndroidID，原值|
 |imei|	String|	Android必填|	设备imei，原值|
-|linkedme_key|	String|	必填|	媒体方标识，与get_ad接口<br>里的linkedme_key值一致|
-|ad_position|	String|	必填|	媒体方广告位ID，LinkedME提供，<br>与get_ad接口里的ad_position值一致|
-|ad_code|	String|	必填|   广告ID，其值为get_ad接口返回结果<br>里的ad_code的值|
+|linkedme_key|	String|	必填|	媒体方标识，<br>与get_ad接口里的linkedme_key值一致|
+|ad_position|	String|	必填|	媒体方广告位ID，<br>与get_ad接口里的ad_position值一致|
+|ad_code|	String|	必填|   广告ID，其值为get_ad接口返回结果里的ad_code的值|
 |ad_content_id|int|	必填|   广告素材ID，其值为get_ad接口返回结果<br>里的ad_content_id的值|
 |os|	String|	必填|	操作系统,iOS或者Android|
-|active_device_type|String|	必填|用哪个设备id提活的广告，<br/>其值为get_ad接口返回结果<br>里的active_device_type值|
-|status|	int|	必填|	广告行为，其值为11，12，13，14，15<br/>11:展示广告<br/>12:点击广告<br/>13:唤起了App<br/>14:点击之后没有唤起App<br>15:点击之后去下载了APP|
+|active_device_type|String|	必填|用哪个设备id提活的广告，<br>其值为get_ad接口返回结果<br>里的active_device_type值|
+|status|	int|	必填|	广告行为，其值为11，12，13，14，15<br>11:展示广告<br>12:点击广告<br>13:唤起了App<br>14:点击之后没有唤起App<br>15:点击之后去下载了APP|
 |request_id|	String|	必填|	追踪广告行为，其值为get_ad接口<br>返回结果里的request_id的值|
 |timestamp|	long|	必填|	时间戳，自1970年起的毫秒数|
 |retry_times|	int|	必填|	重试次数，默认为0|
