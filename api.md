@@ -297,7 +297,7 @@ Android
 |ad_code|	String|	必填|   广告ID，其值为get_ad接口返回结果里的ad_code的值|
 |ad_content_id|int|	必填|   广告素材ID，其值为get_ad接口返回结果<br>里的ad_content_id的值|
 |os|	String|	必填|	操作系统,iOS或者Android|
-|active_device_type|String|	必填|用哪个设备id提活的广告，<br>其值为get_ad接口返回结果<br>里的active_device_type值|
+|active_device_type|String|	必填|用哪个设备id提活的广告，<br>其值为get_ad接口返回结果里的active_device_type值|
 |status|	int|	必填|	广告行为，其值为11，12，13，14，15<br>11:展示广告<br>12:点击广告<br>13:唤起了App<br>14:点击之后没有唤起App<br>15:点击之后去下载了APP|
 |request_id|	String|	必填|	追踪广告行为，其值为get_ad接口<br>返回结果里的request_id的值|
 |timestamp|	long|	必填|	时间戳，自1970年起的毫秒数|
