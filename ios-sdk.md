@@ -30,7 +30,7 @@
 
 | 参数 | 说明 | 备注 |
 | --- | --- | --- |
-| linkedme\_key | LinkedME key |  |
+| linkedme\_key | LinkedME key | 注册并登录[LinkedME](http://linkedme.cc)后台获取 |
 
 ---
 
