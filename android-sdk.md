@@ -260,18 +260,22 @@ LMFloatingView lm_floating_view = (LMFloatingView) findViewById(R.id.lm_floating
    lm_floating_view.getAdWithFrame("4000036_111", "1234567890", lmUser, lmSite, lmGeo, true, new OnAdStatusListener() {
       @Override
       public void onGetAd(boolean status) {
-         // 是否有广告可显示，true：有 false：无
-      }
-
-      @Override
-      public void onClick(AdInfo adInfo) {
-      // 哪一个广告被点击
+          if (status) {
+            Log.d(LinkedME.TAG, "存在匹配广告，可显示插屏广告");
+          } else {
+            Log.d(LinkedME.TAG, "无匹配广告，没有可显示的插屏广告");
+          }
       }
 
       @Override
       public void onClose() {
-      // 广告被关闭
+        Toast.makeText(MainActivity.this, "Floating Activity 广告被关闭", Toast.LENGTH_SHORT).show();
       }
+
+      @Override
+      public void onClick(AdInfo adInfo) {
+        Toast.makeText(MainActivity.this, "Floating Activiy 广告被点击", Toast.LENGTH_SHORT).show();
+     }
   });
         
 Button ad_full_view = (Button) findViewById(R.id.ad_full_view);
