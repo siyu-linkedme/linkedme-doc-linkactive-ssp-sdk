@@ -191,7 +191,7 @@ public void getAdWithFrame(String adPositionId,
 | lmSite |媒体站点信息 |  |
 | lmGeo |地理位置信息 |  |
 | test |是否为测试模式 | 测试模式，调用回调接口后不删除该条广告，调试时建议设置为true，默认为false<br>true:debug模式，不删除广告<br>false:线上模式，删除广告，下次请求广告不再显示该条广告 |
-| onAdStatusListener |广告状态监听 |  |
+| onAdStatusListener |广告状态监听 |  |  
 
 > 也可使用其他重载方法
 
@@ -314,7 +314,10 @@ public void getAdWithFrame(String adPositionId,
 | lmSite |媒体站点信息 |  |
 | lmGeo |地理位置信息 |  |
 | test |是否为测试模式 | 测试模式，调用回调接口后不删除该条广告，调试时建议设置为true，默认为false<br>true:debug模式，不删除广告<br>false:线上模式，删除广告，下次请求广告不再显示该条广告 |
-| onAdStatusListener |广告状态监听 |  |
+| onAdStatusListener |广告状态监听 |  |  
+
+> 也可使用其他重载方法
+
 
 
 ```java
