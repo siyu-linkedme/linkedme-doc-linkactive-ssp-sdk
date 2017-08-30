@@ -68,7 +68,7 @@ public static LinkedME getLinkActiveInstance(@NonNull Context context, String li
 ```java
 LinkedME.getLinkActiveInstance(this, "LinkedME后台分配的Link Active SDK key");
 if (BuildConfig.DEBUG) {
-    //设置debug模式下打印LinkedME日志
+    // 设置debug模式下打印LinkedME日志
     LinkedME.getLinkActiveInstance().setDebug();
 }
 ```
@@ -106,7 +106,13 @@ if (BuildConfig.DEBUG) {
 方法：
 
 ```java
-public void getAdWithFrame(String ad_position_id, String latitude, String longitude, OnAdStatusListener onAdStatusListener) 
+public void getAdWithFrame(String adPositionId,
+                               String searchId,
+                               LMUser lmUser,
+                               LMSite lmSite,
+                               LMGeo lmGeo,
+                               boolean test,
+                               OnAdStatusListener onAdStatusListener) 
 public void lmAdOnResume()
 public void lmAdOnPause() 
 ```
@@ -117,22 +123,36 @@ public void lmAdOnPause()
 @Override
 protected void onCreate(Bundle savedInstanceState) {
   LMBannerView lm_banner = (LMBannerView) findViewById(R.id.lm_banner);
-  lm_banner.getAdWithFrame("分配的广告位id", new OnAdStatusListener() {
-            @Override
-            public void onGetAd(boolean status) {
-                // 是否有广告可显示，true：有 false：无
-            }
+   LMUser lmUser = new LMUser();
+   lmUser.setId("linkedme");// 媒体给用户的标识
+   lmUser.setAge("19900101");// 出生年月日，如：19960101
+   lmUser.setGender(LMUser.GENDER_M);// 性别
+   lmUser.setUser_tag("美食,技术");// 用户的兴趣，用英文逗号分隔
 
-            @Override
-            public void onClick(AdInfo adInfo) {
-                // 哪一个广告被点击
-            }
+   LMSite lmSite = new LMSite();
+   lmSite.setRef("http://www.lkme.cc/ref.html");// 来源url
+   lmSite.setPage("http://www.lkme.cc/page.html");// 页面url
+   lmSite.setKeywords("lkme,LinkedME");// 页面内容关键字，以英文逗号分隔
 
-            @Override
-            public void onClose() {
-                // 广告被关闭
-            }
-        });
+   LMGeo lmGeo = new LMGeo();
+   lmGeo.setLat(39.989431);// 纬度
+   lmGeo.setLon(116.320951);// 经度
+   lm_banner.getAdWithFrame("4000036_111", "1234567890", lmUser, lmSite, lmGeo, true, new OnAdStatusListener() {
+      @Override
+      public void onGetAd(boolean status) {
+         // 是否有广告可显示，true：有 false：无
+      }
+
+      @Override
+      public void onClick(AdInfo adInfo) {
+      // 哪一个广告被点击
+      }
+
+      @Override
+      public void onClose() {
+      // 广告被关闭
+      }
+  });
  }
 
 
@@ -153,16 +173,28 @@ protected void onCreate(Bundle savedInstanceState) {
 
 ```java
 /**
-  * 为该Banner广告设置广告位id，并添加地理位置信息，自动加载显示广告
+  * 为该Banner广告设置广告位id，及附加属性，自动加载显示广告
   */
-public void getAdWithFrame(String ad_position_id, String latitude, String longitude, OnAdStatusListener onAdStatusListener) 
+public void getAdWithFrame(String adPositionId,
+                               String searchId,
+                               LMUser lmUser,
+                               LMSite lmSite,
+                               LMGeo lmGeo,
+                               boolean test,
+                               OnAdStatusListener onAdStatusListener) 
 ```
 | 参数 | 说明 | 备注 |
 | --- | --- | --- |
-| ad_position_id | 广告id |  |
-| latitude |纬度 |  |
-| longitude |经度 |  |
+| adPositionId | 广告id |  |
+| searchId |媒体方每次请求的唯一id，用于追踪请求，媒体方生成 |  |
+| lmUser |用户信息 |  |
+| lmSite |媒体站点信息 |  |
+| lmGeo |地理位置信息 |  |
+| test |是否为测试模式 | 测试模式，调用回调接口后不删除该条广告，调试时建议设置为true，默认为false<br>true:debug模式，不删除广告<br>false:线上模式，删除广告，下次请求广告不再显示该条广告 |
 | onAdStatusListener |广告状态监听 |  |
+
+> 也可使用其他重载方法
+
 ---
 
 #### 4.2 添加插屏广告
@@ -194,7 +226,13 @@ public void getAdWithFrame(String ad_position_id, String latitude, String longit
 方法：
 
 ```java
-public void getAdWithFrame(String ad_position_id, String latitude, String longitude, OnAdStatusListener onAdStatusListener) 
+public void getAdWithFrame(String adPositionId,
+                               String searchId,
+                               LMUser lmUser,
+                               LMSite lmSite,
+                               LMGeo lmGeo,
+                               boolean test,
+                               OnAdStatusListener onAdStatusListener) 
 public void isReady()
 ```
 
@@ -205,28 +243,36 @@ public void isReady()
 protected void onCreate(Bundle savedInstanceState) {
 
 LMFloatingView lm_floating_view = (LMFloatingView) findViewById(R.id.lm_floating_view);
-lm_floating_view.getAdWithFrame("分配的广告位id", new OnAdStatusListener() {
+   LMUser lmUser = new LMUser();
+   lmUser.setId("linkedme");// 媒体给用户的标识
+   lmUser.setAge("19900101");// 出生年月日，如：19960101
+   lmUser.setGender(LMUser.GENDER_M);// 性别
+   lmUser.setUser_tag("美食,技术");// 用户的兴趣，用英文逗号分隔
 
-    @Override
-    public void onGetAd(boolean status) {
-    // 是否有广告可显示，true：有 false：无
-        if (status) {
-            Log.d(LinkedME.TAG, "存在匹配广告，可显示插屏广告");
-        } else {
-            Log.d(LinkedME.TAG, "无匹配广告，没有可显示的插屏广告");
-        }
-    }
+   LMSite lmSite = new LMSite();
+   lmSite.setRef("http://www.lkme.cc/ref.html");// 来源url
+   lmSite.setPage("http://www.lkme.cc/page.html");// 页面url
+   lmSite.setKeywords("lkme,LinkedME");// 页面内容关键字，以英文逗号分隔
 
-    @Override
-    public void onClick(AdInfo adInfo) {
-        // 一个广告被点击
-    }
+   LMGeo lmGeo = new LMGeo();
+   lmGeo.setLat(39.989431);// 纬度
+   lmGeo.setLon(116.320951);// 经度
+   lm_floating_view.getAdWithFrame("4000036_111", "1234567890", lmUser, lmSite, lmGeo, true, new OnAdStatusListener() {
+      @Override
+      public void onGetAd(boolean status) {
+         // 是否有广告可显示，true：有 false：无
+      }
 
-    @Override
-    public void onClose() {
-        // 广告被关闭
-    }
-});
+      @Override
+      public void onClick(AdInfo adInfo) {
+      // 哪一个广告被点击
+      }
+
+      @Override
+      public void onClose() {
+      // 广告被关闭
+      }
+  });
         
 Button ad_full_view = (Button) findViewById(R.id.ad_full_view);
    ad_full_view.setOnClickListener(new View.OnClickListener() {
@@ -246,16 +292,26 @@ Button ad_full_view = (Button) findViewById(R.id.ad_full_view);
 
 ```java
 /**
-  * 为该插屏广告设置广告位id，并添加地理位置信息，自动加载显示广告
+  * 为该Banner广告设置广告位id，及附加属性，自动加载显示广告
   */
-public void getAdWithFrame(String ad_position_id, String latitude, String longitude, OnAdStatusListener onAdStatusListener) 
+public void getAdWithFrame(String adPositionId,
+                               String searchId,
+                               LMUser lmUser,
+                               LMSite lmSite,
+                               LMGeo lmGeo,
+                               boolean test,
+                               OnAdStatusListener onAdStatusListener) 
 ```
 | 参数 | 说明 | 备注 |
 | --- | --- | --- |
-| ad_position_id | 广告id |  |
-| latitude |纬度 |  |
-| longitude |经度 |  |
+| adPositionId | 广告id |  |
+| searchId |媒体方每次请求的唯一id，用于追踪请求，媒体方生成 |  |
+| lmUser |用户信息 |  |
+| lmSite |媒体站点信息 |  |
+| lmGeo |地理位置信息 |  |
+| test |是否为测试模式 | 测试模式，调用回调接口后不删除该条广告，调试时建议设置为true，默认为false<br>true:debug模式，不删除广告<br>false:线上模式，删除广告，下次请求广告不再显示该条广告 |
 | onAdStatusListener |广告状态监听 |  |
+
 
 ```java
 /**
