@@ -61,6 +61,27 @@ LinkActive的接口请求广告时，返回的是按照优先级排序的每个�
 ## Android端代码示例
 
 ```
+
+//check_install_status字段使用示例代码
+// adInfoArrayList为调用get_ad接口获取的广告列表，AdInfo为广告实体
+ArrayList<AdInfo> adInfoArrayList = new ArrayList<>();
+// 检查应用是否安装，以判断是否需要显示广告
+    for (int i = 0; i < adInfoArrayList.size(); i++) {
+        AdInfo adInfo = adInfoArrayList.get(i);
+        // 判断应用是否需要检查安装状态
+        if(adInfo.getCheckInstallStatus().equals("1")){
+        // 需要
+            if(isPkgInstalled(this, adInfo.getPackageName())){
+               // 此广告可展示
+             }else{
+               // 此广告不可展示
+             }
+        }else{
+        // 不需要
+        // 此广告可展示
+        }        
+     }
+
 //广告点击
 ad_click.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -137,6 +158,22 @@ private void openH5Url(String h5_url) {
 ## iOS端代码示例
 
 ```
+
+//check_install_status字段使用示例代码
+// 检查应用是否安装，以判断是否需要显示广告
+if (!OWS_MAN.checkInstallStatus) {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:dict[@"seatbid"][index][@"ad_content"][@"download_url"]] options:@{} completionHandler:^(BOOL success) {
+    if (success) {
+    //打开appstore
+ [self extractReport:dict indexPath:index status:@"openstore_urls"];
+    }else{
+     NSLog(@"操作失败!");
+    }
+  }];
+}
+//这里可以做打开AppStore动作
+block(NO);
+                   
 /*
     通过Url Schemes唤起App
     @param scheme url schemes
@@ -232,7 +269,7 @@ iOS
 
 ```
 [{
-    "check_install_status ":"1",（新增）
+    "check_install_status ":"1",（新增）//[String] 是否检查应用安装状态，以决定是否显示广告。1:检查，安装才显示广告 0:不检查，直接显示广告
     "ad_code": "xx", //[String]广告ID
     "ad_position": "xx", //[String]广告位ID
     "uri_scheme": "xx", //[String] 广告主App的uri_scheme，通过此值来唤起App
@@ -256,7 +293,7 @@ Android
 
 ```
 [{
-    "check_install_status ":"1",（新增）
+    "check_install_status ":"1",（新增）//[String] 是否检查应用安装状态，以决定是否显示广告。1:检查，安装才显示广告 0:不检查，直接显示广告
     "ad_code": "xx", //[String]广告ID
     "ad_position": "xx", //[String]广告位id
     "uri_scheme": "xx", //[String] 广告主App的uri_scheme，通过此值来唤起App
