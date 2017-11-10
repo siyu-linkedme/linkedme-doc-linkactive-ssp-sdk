@@ -233,7 +233,7 @@ optional : 可选字段 (默认类型)
 #### BidRequest对象	
 |字段	|类型 | 是否必填|描述|
 |---|---|---|---|
-|search_id|String|recommended媒体方每次请求的唯一id，用于追踪请求，媒体方生成|
+|search_id|String|recommended|媒体方每次请求的唯一id，用于追踪请求，媒体方生成|
 |device|Object|required|设备信息|
 |app|Object|required|媒体APP信息|
 |user|Object|optional|用户信息|
