@@ -205,10 +205,10 @@ BOOL success = [application openURL:URL];
 
 ## 发送回调通知说明
 
-1）展示广告，status值为11
-2）点击广告，status值为12
-3）唤起APP，status值为13
-4）点击广告，没有唤起APP，status值为14
+1）展示广告，status值为11  
+2）点击广告，status值为12  
+3）唤起APP，status值为13  
+4）点击广告，没有唤起APP，status值为14  
 5）点击广告，去下载APP，status值为15
 
 # 接口说明
