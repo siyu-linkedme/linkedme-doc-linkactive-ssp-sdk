@@ -340,7 +340,7 @@ optional : 可选字段 (默认类型)
 
 
 
-```
+```java
 {
     search_id：“a8c943717c19c5b2”,
     device:{
@@ -387,7 +387,7 @@ optional : 可选字段 (默认类型)
 
 ### 返回示例
 
-```
+```java
 {
     search_id:”a8c943717c19c5b2”    //请求里的search_id
     rid:”1a599cf113e60881fbb337d06ef107aa”,    //linkedme生成的，用于追踪日志
