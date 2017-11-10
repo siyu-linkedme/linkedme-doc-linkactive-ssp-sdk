@@ -60,23 +60,23 @@ LinkActive的接口请求广告时，返回的是按照优先级排序的每个�
 
 ## Android端代码示例
 
-```
+```java
 
 //check_install_status字段使用示例代码
 // adInfoArrayList为调用get_ad接口获取的广告列表，AdInfo为广告实体
 ArrayList<AdInfo> adInfoArrayList = new ArrayList<>();
 // 检查应用是否安装，以判断是否需要显示广告
-for (int i = 0; i < adInfoArrayList.size(); i++) {
-AdInfo adInfo = adInfoArrayList.get(i);
+    for (int i = 0; i < adInfoArrayList.size(); i++) {
+        AdInfo adInfo = adInfoArrayList.get(i);
 // 判断应用是否需要检查安装状态
-if(adInfo.getCheckInstallStatus().equals("1")){
+        if(adInfo.getCheckInstallStatus().equals("1")){
 // 需要
-if(isPkgInstalled(this, adInfo.getPackageName())){
+            if(isPkgInstalled(this, adInfo.getPackageName())){
 // 此广告可展示
-}else{
+            }else{
 // 此广告不可展示
-}
-}else{
+        }
+    }else{
 // 不需要
 // 此广告可展示
 }
@@ -84,28 +84,28 @@ if(isPkgInstalled(this, adInfo.getPackageName())){
 
 //广告点击
 ad_click.setOnClickListener(new View.OnClickListener() {
-@Override
-public void onClick(View view){
+    @Override
+    public void onClick(View view){
 //此处通知服务器点击了广告，修改status为12
-String uriString = "lkmedemo://?click_id=G4LCXAjn7";
-String packageName = "com.microquation.linkedme";
-String h5_url = "http://www.linkedme.cc";
-String apk_url = "https://github.com/WFC-LinkedME/LinkedME-Android-Deep-Linking-Demo/blob/master/LinkedME-Android-Demo.apk?raw=true";
-try {
-Intent intent = Intent.parseUri(uriString, Intent.URI_INTENT_SCHEME);
-intent.setPackage(packageName);
-intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-ResolveInfo resolveInfo = DemoActivity.this.getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
-if (resolveInfo != null) {
-startActivity(intent);
+    String uriString = "lkmedemo://?click_id=G4LCXAjn7";
+    String packageName = "com.microquation.linkedme";
+    String h5_url = "http://www.linkedme.cc";
+    String apk_url = "https://github.com/WFC-LinkedME/LinkedME-Android-Deep-Linking-Demo/blob/master/LinkedME-Android-Demo.apk?raw=true";
+    try {
+            Intent intent = Intent.parseUri(uriString, Intent.URI_INTENT_SCHEME);
+            intent.setPackage(packageName);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            ResolveInfo resolveInfo = DemoActivity.this.getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
+            if (resolveInfo != null) {
+                    startActivity(intent);
 //此处通知服务器唤起了APP，修改status为13
-} else {
-openAppWithPN(packageName, uriString, h5_url, apk_url);
-}
-} catch (URISyntaxException ignore) {
-openAppWithPN(packageName, uriString, h5_url, apk_url);
-}
-}
+            } else {
+                openAppWithPN(packageName, uriString, h5_url, apk_url);
+            }
+    } catch (URISyntaxException ignore) {
+        openAppWithPN(packageName, uriString, h5_url, apk_url);
+        }
+    }
 });
 
 /**
@@ -117,25 +117,25 @@ openAppWithPN(packageName, uriString, h5_url, apk_url);
 */
 private void openAppWithPN(String packageName, String uriString, String h5_url, String apk_url) {
 //如果通过uri scheme没有唤起APP，则尝试包名唤起APP
-Intent resolveIntent = DemoActivity.this.getPackageManager().getLaunchIntentForPackage(packageName);
+    Intent resolveIntent = DemoActivity.this.getPackageManager().getLaunchIntentForPackage(packageName);
 // 启动目标应用
-if (resolveIntent != null) {
-resolveIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-resolveIntent.setData(Uri.parse(uriString));
-DemoActivity.this.startActivity(resolveIntent);
+    if (resolveIntent != null) {
+        resolveIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        resolveIntent.setData(Uri.parse(uriString));
+        DemoActivity.this.startActivity(resolveIntent);
 //此处通知服务器唤起了APP，修改status为13
-} else {
+        } else {
 //此处通知服务器未唤起APP，修改status为14
 //建议未唤起APP打开h5页面的同时下载apk，引导用户安装
-if (!TextUtils.isEmpty(h5_url)) {
-openH5Url(h5_url);
-}
-if (!TextUtils.isEmpty(apk_url)) {
+            if (!TextUtils.isEmpty(h5_url)) {
+                openH5Url(h5_url);
+            }
+            if (!TextUtils.isEmpty(apk_url)) {
 //此处通知服务器未唤起APP，引导用户下载APP，修改status为15
 // 应用内开启服务下载apk文件或通过外部浏览器下载apk文件
-}
-}
-}
+            }
+        }
+    }
 
 /**
 * 打开h5链接
@@ -162,13 +162,13 @@ private void openH5Url(String h5_url) {
 //check_install_status字段使用示例代码
 // 检查应用是否安装，以判断是否需要显示广告
 if (!OWS_MAN.checkInstallStatus) {
-[[UIApplication sharedApplication] openURL:[NSURL URLWithString:dict[@"seatbid"][index][@"ad_content"][@"download_url"]] options:@{} completionHandler:^(BOOL success) {
-if (success) {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:dict[@"seatbid"][index][@"ad_content"][@"download_url"]] options:@{} completionHandler:^(BOOL success) {
+    if (success) {
 //打开appstore
-[self extractReport:dict indexPath:index status:@"openstore_urls"];
-}else{
-NSLog(@"操作失败!");
-}
+        [self extractReport:dict indexPath:index status:@"openstore_urls"];
+    }else{
+        NSLog(@"操作失败!");
+    }
 }];
 }
 //这里可以做打开AppStore动作
@@ -181,23 +181,23 @@ block(NO);
 - (void)openScheme:(NSString *)scheme AndAdid:(NSUInteger)adid{
 UIApplication *application = [UIApplication sharedApplication];
 NSURL *URL = [NSURL URLWithString:scheme];
-if ([application respondsToSelector:@selector(openURL:options:completionHandler:)]) {
-[application openURL:URL options:@{}
-completionHandler:^(BOOL success) {
-[self recordStatus:[NSString stringWithFormat:@"%d",success] withAdid:adid];
-if (success) {
+    if ([application respondsToSelector:@selector(openURL:options:completionHandler:)]) {
+        [application openURL:URL options:@{}
+        completionHandler:^(BOOL success) {
+            [self recordStatus:[NSString stringWithFormat:@"%d",success] withAdid:adid];
+                if (success) {
 //拉活成功,此处通知服务器唤起了APP，status为13
-}else{
+                }else{
 //拉活失败,此处通知服务器未唤起APP，status为14
 //这里可以做打开h5页和打开AppStore动作
-}
-}];
-} else {
-BOOL success = [application openURL:URL];
+                }
+            }];
+            } else {
+                BOOL success = [application openURL:URL];
 //App拉活失败,此处通知服务器未唤起APP，status为14
 //判断是否在app内打开AppStore
-[self showStoreProductWithAdid:adid];
-}
+                [self showStoreProductWithAdid:adid];
+                }
 }
 ```
 
