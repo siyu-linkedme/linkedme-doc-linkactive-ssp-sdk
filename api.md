@@ -408,12 +408,12 @@ optional : 可选字段 (默认类型)
             content:””
         }}],
      track:{
-            imp_urls:[“http://xx”],
-            deeplink_urls:[“http://xx”],
-            active_urls:[“http://xx”],
-            not_active_urls:[“http://xx”],
-            download_urls:[“http://xx”],
-            openstore_urls:[“http://xx”]
+            imp_urls:[“http://xx”],//曝光上报
+            deeplink_urls:[“http://xx”],//点击上报
+            active_urls:[“http://xx”],//拉活上报
+            not_active_urls:[“http://xx”],//未拉活上报
+            download_urls:[“http://xx”],//下载上报
+            openstore_urls:[“http://xx”]//openstore上报
         },
     nurl:”“http://xx””
 } 
@@ -422,7 +422,8 @@ optional : 可选字段 (默认类型)
 
 
 ## 广告行为上报接口
-当广告被曝光、点击、拉活、下载和安装时，调用上报接口。
+当广告被曝光、点击、拉活、下载和安装时，调用上报接口。  
+该接口不需要单独对接 , 在getAd接口返回的内容中已经有对应的链接了(track对象中) , 媒体方将对其中的{ADID} {CID} 替换之后,直接上报就可以
 
 ### 接口协议
 * 接口地址：http://a.lkme.cc/ad/openapi/v2/record_status
