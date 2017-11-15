@@ -151,7 +151,7 @@ private void openH5Url(String h5_url) {
 
 ## iOS端逻辑
 1. 从SSP后台的应用管理中拿到APP对应的广告主Url Scheme，并写入配置文件中（为了判断广告主的APP是否安装）
-2. （方案一）调用“/ad/openapi/v2/get_ad”接口获取广告列表数据(建议服务端调用)，LinkedME可能返回多条广告；获取数据后，根据check_install_status字段的值确认是否需要判断安装状态，如需要则通过scheme逐条判断应用是否已安装，最终获得有效广告列表，顺次显示广告；若均无效则不展示广告。<br>（方案二）媒体方可实时或周期性扫描白名单，在调用“/ad/openapi/v2/get_ad”接口请求广告时将白名单中已经安装的APP list通过ad_app_install_list字段传给LinkActive，LinkActive根据返回的白名单来返回已安装的广告主的广告；媒体根据返回的广告列表顺次展示广告。
+2. （方案一）调用“/ad/openapi/v2/get_ad”接口获取广告列表数据(建议服务端调用)，LinkedME可能返回多条广告；获取数据后，根据check_install_status字段的值确认是否需要判断安装状态，如需要则通过scheme逐条判断应用是否已安装，最终获得有效广告列表，顺次显示广告；若均无效则不展示广告。<br>（方案二）媒体方可实时或周期性扫描白名单，在调用“/ad/openapi/v2/get_ad”接口请求广告时将白名单中已经安装的APP list通过ad_app_install_list字段传给LinkActive，LinkActive根据返回的APP列表来返回已安装的广告主的广告；媒体根据返回的广告列表顺次展示广告。
 3. 用户点击广告，通过scheme唤起APP(如果第二步展示了未安装的APP广告，点击后跳转到AppStore；)
 4. 调用“/ad/openapi/v2/record_status”接口向LinkedME服务器发送广告行为通知。
 
