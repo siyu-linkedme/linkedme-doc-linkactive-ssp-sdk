@@ -160,6 +160,7 @@ private void openH5Url(String h5_url) {
 iOS广告主app安装状态获取（通过url scheme白名单）
 
 ```
+
 - (void) appInstallStatus:(void (^)(NSDictionary* dict))block{
     NSMutableDictionary * appStatus = [[NSMutableDictionary alloc]init];
     NSArray* ret = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"LSApplicationQueriesSchemes"];
@@ -183,6 +184,7 @@ iOS广告主app安装状态获取（通过url scheme白名单）
     }];
     
 ```
+
 
 ```
 //check_install_status字段使用示例代码
