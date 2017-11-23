@@ -289,7 +289,7 @@ optional : 可选字段 (默认类型)
 |carrier|String|optional|运行商|
 |connectiontype|int|optional|联网方式<br>0：未知<br>1：Ethernet<br>2：wifi<br>3：未知蜂窝网络<br>4：2G 网络<br>5：3G 网络<br>6：4G网络|
 |geo|Object|optional|地理位置信息|
-|ad_app_install_list|Object|optional|安装应用列表 ‘;’ 分割的安装应用包名|
+|ad_app_install_list|Object|optional|安装了了广告主app的用户才请求广告<br> Android：广告主app包名列表，用;分号分隔； <br>iOS：白名单里的scheme列表，用;分号分隔；|
 
 #### app对象
 |字段	|类型	|是否必填 | 描述|
