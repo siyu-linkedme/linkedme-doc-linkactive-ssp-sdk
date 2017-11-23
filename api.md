@@ -157,8 +157,34 @@ private void openH5Url(String h5_url) {
 
 ## iOS端代码示例
 
+iOS广告主app安装状态获取（通过url scheme白名单）
+
+```
+- (void) appInstallStatus:(void (^)(NSDictionary* dict))block{
+    NSMutableDictionary * appStatus = [[NSMutableDictionary alloc]init];
+    NSArray* ret = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"LSApplicationQueriesSchemes"];
+    if (ret) {
+        for (NSString * scheme in ret) {
+            if ([scheme isKindOfClass:[NSString class]]) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:scheme] options:@{} completionHandler:^(BOOL success) {
+                    [appStatus setValue:[NSString stringWithFormat:@"%d",success] forKey:scheme];
+                    if (appStatus.count == ret.count) {
+                        block(appStatus);
+                    }
+                }];
+            }
+        }
+    }
+}
+
+调用
+  [self appInstallStatus:^(NSDictionary * dict) {
+        NSLog(@"%@",dict);
+    }];
+    
 ```
 
+```
 //check_install_status字段使用示例代码
 // 检查应用是否安装，以判断是否需要显示广告
 if (!OWS_MAN.checkInstallStatus) {
