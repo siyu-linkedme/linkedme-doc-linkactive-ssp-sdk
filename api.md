@@ -295,8 +295,8 @@ optional : 可选字段 (默认类型)
 |字段	|类型	|是否必填 | 描述|
 |---|---|---|---|
 |linkedme_key|String|required|媒体APP标识，由LinkedME提供|
-|app_name|String|required|媒体app名称|
 |ad_position_id|String|required|媒体广告位标识，由LinkedME提供|
+|app_name|String|required|媒体app名称|
 |ver|String|optional|媒体APP版本号|
 
 #### user对象
