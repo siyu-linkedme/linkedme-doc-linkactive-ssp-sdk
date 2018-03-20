@@ -466,6 +466,7 @@ optional : 可选字段 (默认类型)
 |---|---|---|---|
 |search_id|String|required|请求广告接口里的search_id|
 |bidid|String|required|返回广告结果里的bidid|
+|timestamp|long|required|广告行为的发生时间，即当前时间的毫秒数，如1521528544|
 |imei|String|required<br>（Android）|安卓设备的imei原值，如果是Android系统则必填|
 |android_id|String|optional|安卓设备的AndroidID原值|
 |idfa|String|required<br>（iOS）|苹果设备的idfa原值，如果是iOS系统则必填|
@@ -476,7 +477,7 @@ optional : 可选字段 (默认类型)
 |cid|String|required|创意id|
 |status|int|required|上报类型<br>11  曝光<br>12  点击深度链接<br>13  拉活<br>14  iOS系统下，点击深度链接，但是没有唤起APP<br>15  开始下载<br>25  进入应用商店<br>27  安装完成<br>28  点击h5链接<br>|
 |test|int|optional|值为0或1<br>0：live<br>1：test<br>默认为0|
-|timestamp|long|required|广告行为的发生时间，即当前时间的毫秒数，如1521528544|
+
 
 ## 调用成功接口
 如果返回的广告参与竞价，广告竞价成功后回调通知。
