@@ -2,7 +2,7 @@
 
 ## Android集成文档
 
-### 1.引入jar包并依赖
+### 引入jar包并依赖
 将jar包复制到项目libs目录下，并添加到项目Module层的build.gradle依赖中，如下示例：
 
 ```groovy
@@ -12,8 +12,8 @@ dependencies {
 }
 ```
 
-### 2.配置AndroidManifest.xml文件
-#### 2.1 配置点击广告后显示h5页面Activity
+### 配置AndroidManifest.xml文件
+####  配置点击广告后显示h5页面Activity
 ```xml
 <activity
     android:name="cc.lkme.linkactive.view.LMH5Activity"
@@ -23,7 +23,7 @@ dependencies {
     android:windowSoftInputMode="adjustResize|stateHidden"/>
 
 ```
-#### 2.2 配置点击广告后下载apk的Service
+####  配置点击广告后下载apk的Service
 
 ```xml
  <service
@@ -44,7 +44,7 @@ dependencies {
 </resources>
 ```
 
-#### 2.3 配置点击广告下载apk安装后的监听
+####  配置点击广告下载apk安装后的监听
 注册该监听以便将广告带来的下载安装状态回传给服务器
 
 ```xml
@@ -57,7 +57,7 @@ dependencies {
 </receiver>
 
 ```  
-### 3.初始化SDK
+### 初始化SDK
 
 描述：
 
@@ -87,19 +87,19 @@ if (BuildConfig.DEBUG) {
 ---
 
 
-### 4.添加广告
+### 添加广告
 广告分以下几种广告形式：
 1. Banner广告：显示多个广告，可按一定的时间间隔自动轮播；
 2. 插屏广告：显示一个大尺寸广告；
 3. 开屏广告：开屏页面广告
 4. 原生广告：用户自定义广告视图
-#### 4.1 添加Banner广告
-##### 4.1.1 创建Banner广告对象
+####  添加Banner广告
+#####  创建Banner广告对象
  ```java
    LMBannerAdView lm_banner = new LMBannerAdView(this, "4000061_373");
  ```
  
-##### 4.1.2 加载广告及设置监听
+##### 加载广告及设置监听
 
 方法：
 
@@ -191,13 +191,13 @@ public void loadAd()
 
 ---
 
-#### 4.2 添加插屏广告
-##### 4.2.1 创建插屏广告对象
+####  添加插屏广告
+#####  创建插屏广告对象
  ```java
  LMInterstitialAd lmInterstitialAd = new LMInterstitialAd(this, "4000061_374");
  ```
  
-##### 4.2.2 加载广告并在广告准备就绪后显示广告
+#####  加载广告并在广告准备就绪后显示广告
 
 方法：
 
@@ -255,13 +255,13 @@ lmInterstitialAd.setOnAdStatusListener(new OnAdStatusListener() {
 > 提示：监听广告状态，只有在onReady()回调监听被调用后才可显示插屏广告，增强用户体验！
 
 ---
-#### 4.3 添加开屏广告
-##### 4.3.1 创建开屏广告对象
+####  添加开屏广告
+#####  创建开屏广告对象
  ```java
 LMSplashAd lmSplashAd = new LMSplashAd(this, "4000061_375", container, skip, this);
  ```
  
-##### 4.3.2 加载广告并在广告准备就绪后显示广告
+#####  加载广告并在广告准备就绪后显示广告
 
 方法：
 
@@ -398,8 +398,8 @@ public interface OnSplashAdListener {
 
 ---
 
-#### 4.4 原生广告
-##### 4.4.1 添加原生广告视图
+####  原生广告
+#####  添加原生广告视图
  ```xml
   <cc.lkme.linkactive.view.LMADContainer
            android:id="@+id/lm_ad_container"
@@ -413,7 +413,7 @@ public interface OnSplashAdListener {
    </cc.lkme.linkactive.view.LMADContainer>
  ```
  
-##### 4.4.2 获取广告数据并自定义广告展现形式
+#####  获取广告数据并自定义广告展现形式
 
 方法：
 
