@@ -1,3 +1,5 @@
+# LinkActive SDK开发文档
+
 ## Android集成文档
 
 ### 1.引入jar包并依赖
@@ -6,7 +8,7 @@
 ```groovy
 dependencies {
   //注意修改jar包名
-  compile files('libs/LinkedME-Active-SDK-V1.0.3.jar')
+  compile files('libs/LinkedME-Active-SDK-V1.1.0.jar')
 }
 ```
 
@@ -28,14 +30,18 @@ dependencies {
     android:name="cc.lkme.linkactive.network.LMDownloadService"
     android:exported="false"/>
 ```
-> apk下载存储位置为公共Download文件夹，因Android 7.0系统权限更改，需要通过FileProvider来获取Download文件夹中指定文件的Uri。因此需要添加FileProvider相关配置，具体配置参考官方文档：[Setting Up File Sharing](https://developer.android.com/training/secure-file-sharing/setup-sharing.html)。
+> apk下载存储位置为LMDownload文件夹，因Android 7.0系统权限更改，需要通过FileProvider来获取Download文件夹中指定文件的Uri。因此需要添加FileProvider相关配置，具体配置参考官方文档：[Setting Up File Sharing](https://developer.android.com/training/secure-file-sharing/setup-sharing.html)。
 > FileProvider配置完成后，需要在FileProvider的xml文件配置中添加\<external-path/>子节点，用于访问Download文件夹中的文件，如下所示：
 > 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
+<resources>
 <paths>
-    <external-path name="external_files" path="/"/>
+            <external-path
+                name="lm_active_download"
+                path="LMDownload"/>
 </paths>
+</resources>
 ```
 
 #### 2.3 配置点击广告下载apk安装后的监听
@@ -68,7 +74,7 @@ public static LinkedME getLinkActiveInstance(@NonNull Context context, String li
 ```java
 LinkedME.getLinkActiveInstance(this, "LinkedME后台分配的Link Active SDK key");
 if (BuildConfig.DEBUG) {
-    // 设置debug模式下打印LinkedME日志
+    //设置debug模式下打印LinkedME日志
     LinkedME.getLinkActiveInstance().setDebug();
 }
 ```
@@ -82,39 +88,26 @@ if (BuildConfig.DEBUG) {
 
 
 ### 4.添加广告
-广告分两种展现形式：
-1. Banner广告，可显示多个广告，同时按一定的时间间隔自动轮播；
-2. 插屏广告，显示一个大尺寸广告；
+广告分以下几种广告形式：
+1. Banner广告：显示多个广告，可按一定的时间间隔自动轮播；
+2. 插屏广告：显示一个大尺寸广告；
+3. 开屏广告：开屏页面广告
+4. 原生广告：用户自定义广告视图
 #### 4.1 添加Banner广告
-##### 4.1.1 在需要显示Banner广告的布局文件中添加广告视图
- ```xml
-  <cc.lkme.linkactive.view.LMBannerView
-      android:id="@+id/lm_banner"
-      android:layout_width="match_parent"
-      android:layout_height="60dp"
-      android:visibility="gone"/>
-       
+##### 4.1.1 创建Banner广告对象
+ ```java
+   LMBannerAdView lm_banner = new LMBannerAdView(this, "4000061_373");
  ```
  
-##### 4.1.2 加载广告
-
-描述：
-
-- 获取广告，通过传入广告位id获取广告；
-- 重写onPause()及onResume()方法，在未处于前台页面时停止轮播。
+##### 4.1.2 加载广告及设置监听
 
 方法：
 
 ```java
-public void getAdWithFrame(String adPositionId,
-                               String searchId,
-                               LMUser lmUser,
-                               LMSite lmSite,
-                               LMGeo lmGeo,
-                               boolean test,
-                               OnAdStatusListener onAdStatusListener) 
-public void lmAdOnResume()
-public void lmAdOnPause() 
+public void setRefresh(int refresh) 
+public void setShowClose(boolean showClose)
+public void loadAd()
+public void setOnAdStatusListener(OnAdStatusListener onAdStatusListener)
 ```
 
 示例：
@@ -122,259 +115,355 @@ public void lmAdOnPause()
 ```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
-  LMBannerView lm_banner = (LMBannerView) findViewById(R.id.lm_banner);
-   LMUser lmUser = new LMUser();
-   lmUser.setId("linkedme");// 媒体给用户的标识
-   lmUser.setAge("19900101");// 出生年月日，如：19960101
-   lmUser.setGender(LMUser.GENDER_M);// 性别
-   lmUser.setUser_tag("美食,技术");// 用户的兴趣，用英文逗号分隔
+  LMBannerAdView lm_banner = new LMBannerAdView(this, "4000061_373");
+  lm_banner.setOnAdStatusListener(new OnAdStatusListener() {
+            @Override
+            public void onClick(AdInfo adInfo) {
+                super.onClick(adInfo);
+                Log.i(TAG, "点击广告！");
+            }
 
-   LMSite lmSite = new LMSite();
-   lmSite.setRef("http://www.lkme.cc/ref.html");// 来源url
-   lmSite.setPage("http://www.lkme.cc/page.html");// 页面url
-   lmSite.setKeywords("lkme,LinkedME");// 页面内容关键字，以英文逗号分隔
+            @Override
+            public void onExposure(AdInfo adInfo) {
+                super.onExposure(adInfo);
+                Log.i(TAG, "曝光广告！");
+            }
 
-   LMGeo lmGeo = new LMGeo();
-   lmGeo.setLat(39.989431);// 纬度
-   lmGeo.setLon(116.320951);// 经度
-   lm_banner.getAdWithFrame("4000036_111", "1234567890", lmUser, lmSite, lmGeo, true, new OnAdStatusListener() {
-      @Override
-      public void onGetAd(boolean status) {
-         // 是否有广告可显示，true：有 false：无
-      }
+            @Override
+            public void onGetAd(boolean status) {
+                super.onGetAd(status);
+                if (status) {
+                    Log.i(TAG, "有可展示广告！");
+                } else {
+                    Log.i(TAG, "无展示广告！");
+                }
+            }
 
-      @Override
-      public void onClick(AdInfo adInfo) {
-      // 哪一个广告被点击
-      }
-
-      @Override
-      public void onClose() {
-      // 广告被关闭
-      }
-  });
+            @Override
+            public void onClose() {
+                super.onClose();
+                Log.i(TAG, "关闭广告！");
+            }
+        });
+        // 设置轮播时间间隔，单位秒，可设置20到200秒
+        lm_banner.setRefresh(5);
+        // 设置是否显示关闭按钮，默认不显示
+        lm_banner.setShowClose(true);
+        // 添加视图
+        ad_container.addView(lm_banner);
+        // 开始加载广告
+        lm_banner.loadAd();
  }
 
-
- @Override
- protected void onPause() {
-     super.onPause();
-     lm_banner.lmAdOnPause();
- }
-
- @Override
- protected void onResume() {
-     super.onResume();
-     lm_banner.lmAdOnResume();
- }
 ```
 
 ##### 参数说明
 
 ```java
 /**
-  * 为该Banner广告设置广告位id，及附加属性，自动加载显示广告
+  * 为该Banner广告设置广告位id，自动加载显示广告
+  * 
+  * @param context      Context
+  * @param adPositionId 广告位Id
   */
-public void getAdWithFrame(String adPositionId,
-                               String searchId,
-                               LMUser lmUser,
-                               LMSite lmSite,
-                               LMGeo lmGeo,
-                               boolean test,
-                               OnAdStatusListener onAdStatusListener) 
-```
-| 参数 | 说明 | 备注 |
-| --- | --- | --- |
-| adPositionId | 广告id |  |
-| searchId |媒体方每次请求的唯一id，用于追踪请求，媒体方生成 |  |
-| lmUser |用户信息 |  |
-| lmSite |媒体站点信息 |  |
-| lmGeo |地理位置信息 |  |
-| test |是否为测试模式 | 测试模式，调用回调接口后不删除该条广告，调试时建议设置为true，默认为false<br>true:debug模式，不删除广告<br>false:线上模式，删除广告，下次请求广告不再显示该条广告 |
-| onAdStatusListener |广告状态监听 |监听状态 |  
+public LMBannerAdView(@NonNull Context context, @NonNull String adPositionId) 
 
-> 也可使用其他重载方法
+/**
+  * 设置轮播时间间隔，单位秒，可设置20到200秒
+  *
+  * @param refresh 秒
+  */
+public void setRefresh(int refresh)
+
+/**
+  * 设置是否显示关闭按钮，默认为false不显示
+  *
+  * @param showClose true:显示 false:不显示
+  */
+public void setShowClose(boolean showClose)
+
+ /**
+   * 加载广告
+   */
+public void loadAd()
+    
+```
 
 ---
 
 #### 4.2 添加插屏广告
-##### 4.2.1 在需要显示插屏广告的布局文件中添加广告视图
- ```xml
- <RelativeLayout>
- ...
- 
-  <cc.lkme.linkactive.view.LMFloatingView
-      android:id="@+id/lm_floating_view"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:padding="16dp"
-      android:background="#33000000"
-      android:layout_centerInParent="true"
-      android:visibility="gone"/>
-      
-...
-</RelativeLayout>
+##### 4.2.1 创建插屏广告对象
+ ```java
+ LMInterstitialAd lmInterstitialAd = new LMInterstitialAd(this, "4000061_374");
  ```
  
-##### 4.2.2 加载广告
-
-描述：
-
-- 获取插屏广告，通过传入广告位id获取广告；
-- 在适当的时刻显示插屏广告。
+##### 4.2.2 加载广告并在广告准备就绪后显示广告
 
 方法：
 
 ```java
-public void getAdWithFrame(String adPositionId,
-                               String searchId,
-                               LMUser lmUser,
-                               LMSite lmSite,
-                               LMGeo lmGeo,
-                               boolean test,
-                               OnAdStatusListener onAdStatusListener) 
-public void isReady()
+public void loadAd()
+public void show()
+public void showAsPopWindow()
+public void closePopupWindow() 
 ```
 
 示例：
  
 ```java
-@Override
-protected void onCreate(Bundle savedInstanceState) {
+LMInterstitialAd lmInterstitialAd = new LMInterstitialAd(MainActivity.this, "4000061_374");
+lmInterstitialAd.loadAd();
+lmInterstitialAd.setOnAdStatusListener(new OnAdStatusListener() {
 
-LMFloatingView lm_floating_view = (LMFloatingView) findViewById(R.id.lm_floating_view);
-   LMUser lmUser = new LMUser();
-   lmUser.setId("linkedme");// 媒体给用户的标识
-   lmUser.setAge("19900101");// 出生年月日，如：19960101
-   lmUser.setGender(LMUser.GENDER_M);// 性别
-   lmUser.setUser_tag("美食,技术");// 用户的兴趣，用英文逗号分隔
-
-   LMSite lmSite = new LMSite();
-   lmSite.setRef("http://www.lkme.cc/ref.html");// 来源url
-   lmSite.setPage("http://www.lkme.cc/page.html");// 页面url
-   lmSite.setKeywords("lkme,LinkedME");// 页面内容关键字，以英文逗号分隔
-
-   LMGeo lmGeo = new LMGeo();
-   lmGeo.setLat(39.989431);// 纬度
-   lmGeo.setLon(116.320951);// 经度
-   lm_floating_view.getAdWithFrame("4000036_111", "1234567890", lmUser, lmSite, lmGeo, true, new OnAdStatusListener() {
-      @Override
-      public void onGetAd(boolean status) {
-          if (status) {
-            Log.d(LinkedME.TAG, "存在匹配广告，可显示插屏广告");
-          } else {
-            Log.d(LinkedME.TAG, "无匹配广告，没有可显示的插屏广告");
-          }
-      }
-
-      @Override
-      public void onClose() {
-        Toast.makeText(MainActivity.this, "Floating Activity 广告被关闭", Toast.LENGTH_SHORT).show();
-      }
-
-      @Override
-      public void onClick(AdInfo adInfo) {
-        Toast.makeText(MainActivity.this, "Floating Activiy 广告被点击", Toast.LENGTH_SHORT).show();
-     }
-  });
-        
-Button ad_full_view = (Button) findViewById(R.id.ad_full_view);
-   ad_full_view.setOnClickListener(new View.OnClickListener() {
        @Override
-       public void onClick(View view) {
-           if (lm_floating_view.isReady()) {
-               // 插屏广告需要判断图片是否已缓存，缓存后再显示插屏广告
-               lm_floating_view.setVisibility(View.VISIBLE);
-           }
+       public void onReady() {
+          super.onReady();
+          lmInterstitialAd.showAsPopWindow();
+
+       @Override
+       public void onExposure(AdInfo adInfo) {
+          super.onExposure(adInfo);
        }
-   });
-        
- }
+ });
 ```
 
 ##### 参数说明
 
 ```java
-/**
-  * 为该Banner广告设置广告位id，及附加属性，自动加载显示广告
+ /**
+   * 加载广告
+   */
+ public void loadAd()
+
+ /**
+  * 显示插屏广告，背景为灰色透明
   */
-public void getAdWithFrame(String adPositionId,
-                               String searchId,
-                               LMUser lmUser,
-                               LMSite lmSite,
-                               LMGeo lmGeo,
-                               boolean test,
-                               OnAdStatusListener onAdStatusListener) 
-```
-| 参数 | 说明 | 备注 |
-| --- | --- | --- |
-| adPositionId | 广告id |  |
-| searchId |媒体方每次请求的唯一id，用于追踪请求，媒体方生成 |  |
-| lmUser |用户信息 |  |
-| lmSite |媒体站点信息 |  |
-| lmGeo |地理位置信息 |  |
-| test |是否为测试模式 | 测试模式，调用回调接口后不删除该条广告，调试时建议设置为true，默认为false<br>true:debug模式，不删除广告<br>false:线上模式，删除广告，下次请求广告不再显示该条广告 |
-| onAdStatusListener |广告状态监听 | 监听状态 |  
-
-> 也可使用其他重载方法
-
-
-
-```java
-/**
-  * 判断插屏广告图片是否已准备就绪（已缓存）
+ public void show()
+ 
+ /**
+  * 显示插屏广告，背景为透明
   */
-public void isReady() 
+ public void showAsPopWindow()
+ 
+ /**
+  * 关闭背景为透明的插屏广告
+  */
+ public void closePopupWindow()
 
 ```
+
+> 提示：监听广告状态，只有在onReady()回调监听被调用后才可显示插屏广告，增强用户体验！
 
 ---
-
-#### 4.3.附加功能
-描述：
-
-- 可控制close按钮的大小及是否显示
+#### 4.3 添加开屏广告
+##### 4.3.1 创建开屏广告对象
+ ```java
+LMSplashAd lmSplashAd = new LMSplashAd(this, "4000061_375", container, skip, this);
+ ```
+ 
+##### 4.3.2 加载广告并在广告准备就绪后显示广告
 
 方法：
 
 ```java
-public void enableCloseAd(boolean enableCloseAd)
-public void setCloseButtonRadius(@Dimension int radius)
+public LMSplashAd(Context context, String adPositionId,
+                      ViewGroup adContainer, View skipView, @NonNull OnSplashAdListener onSplashAdListener)
+
 ```
 
 示例：
  
 ```java
+ // 标识是否可以跳到app主页面
+private boolean canJump = false;
+
 @Override
-protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
+        super.onCreate(savedInstanceState);
+        // 因广告请求需要imei号，请先获取后再请求广告！！！
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
+        }
+        setContentView(R.layout.activity_splash);
+        container = this.findViewById(R.id.splash_container);
+        skip = findViewById(R.id.skip);
+        launch_default = findViewById(R.id.launch_default);
+        lmSplashAd = new LMSplashAd(this, "4000061_375", container, skip, this);
+    }
+  @Override
+    protected void onResume() {
+        super.onResume();
+        if (canJump) {
+            gotoMain();
+        }
+    }
 
-  // 设置显示close按钮，Banner广告默认不显示，插屏广告默认显示
-  lm_banner.enableCloseAd(true);
-  // 设置close按钮半径的大小，默认8dp，Banner广告及插屏广告均可设置
-  lm_banner.setCloseButtonRadius(8);
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 
- }
+    @Override
+    public void onClick(AdInfo adInfo) {
+        Log.i("LinkedME", "开屏广告被点击！");
+        canJump = true;
+    }
+
+    @Override
+    public void onGetAd(boolean status) {
+        if (status) {
+            Log.i("LinkedME", "开屏广告有可展示广告！");
+        } else {
+            Log.i("LinkedME", "开屏广告无可展示广告！");
+            gotoMain();
+        }
+    }
+
+    @Override
+    public void onClose() {
+        Log.i("LinkedME", "开屏广告被关闭！");
+        gotoMain();
+    }
+
+    @Override
+    public void onExposure(AdInfo adInfo) {
+        Log.i("LinkedME", "开屏广告曝光！");
+    }
+
+    @Override
+    public void onReady() {
+        Log.i("LinkedME", "开屏广告已准备就绪，可以显示！");
+        // 开屏广告准备就绪后，需要将启动欢迎页面隐藏掉以显示开屏广告
+        launch_default.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onTick(long millis) {
+        Log.i("LinkedME", "开屏广告倒计时: " + Math.round(millis / 1000f));
+        skip.setText(String.format(SKIP_TEXT, Math.round(millis / 1000f)));
+    }
+
+    private void gotoMain() {
+        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 ```
 
 ##### 参数说明
 
 ```java
-/**
-  * 是否显示close按钮，允许用户关闭广告，默认不显示
-  */
-public void enableCloseAd(boolean enableCloseAd)
+public interface OnSplashAdListener {
+    /**
+     * 广告点击时回调
+     *
+     * @param adInfo 广告信息
+     */
+    void onClick(AdInfo adInfo);
+
+    /**
+     * 是否有匹配广告，用户可根据该状态判断是否显示LinkedME广告还是显示其他广告
+     *
+     * @param status true:有匹配广告  false:无可显示的广告
+     */
+    void onGetAd(boolean status);
+
+    /**
+     * 广告被关闭时回调
+     */
+    void onClose();
+
+    /**
+     * 广告曝光时回调
+     */
+    void onExposure(AdInfo adInfo);
+
+    /**
+     * 开屏广告准备好后调用
+     */
+    void onReady();
+
+    /**
+     * 广告倒计时回调
+     *
+     * @param millis 返回广告还将被展示的剩余时间，单位是ms
+     */
+    void onTick(long millis);
+}
+
 ```
-| 参数 | 说明 | 备注 |
-| --- | --- | --- |
-| enableCloseAd | true:显示关闭按钮，允许用户关闭广告 <br />  false：不显示关闭按钮，不允许用户关闭广告 |  可不设定  |
+
+> 提示：因广告请求需要imei号，请先获取后再请求广告
+
+---
+
+#### 4.4 原生广告
+##### 4.4.1 添加原生广告视图
+ ```xml
+  <cc.lkme.linkactive.view.LMADContainer
+           android:id="@+id/lm_ad_container"
+           android:layout_width="match_parent"
+           android:background="@color/colorPrimary"
+           android:layout_height="wrap_content"
+           android:visibility="gone"
+           >
+       <!--用户自定义广告视图嵌入到LMADContainer视图中-->
+       
+   </cc.lkme.linkactive.view.LMADContainer>
+ ```
+ 
+##### 4.4.2 获取广告数据并自定义广告展现形式
+
+方法：
 
 ```java
-/**
- * 设置关闭按钮的大小
- */
-public void setCloseButtonRadius(@Dimension int radius) 
+public void getAd(String adPositionId, OnAdStatusListener onAdStatusListener)
 ```
-| 参数 | 说明 | 备注 |
-| --- | --- | --- |
-| radius | 关闭按钮的半径，单位dp | 可不设定 |
+
+示例：
+ 
+```java
+ lm_ad_container.getAd("4000061_374", new OnAdStatusListener() {
+    @Override
+     public void onGetAd(boolean status, AdInfo adInfo) {
+        if (status) {
+         // 调用方法显示广告视图
+          lm_ad_container.setAdVisibility(true);
+        // 以下处理自定义视图展示
+        // 标题
+          adInfo.getTitle();
+          // 副标题
+          adInfo.getSub_title();
+          // 内容
+          adInfo.getContent();
+          // 图片列表
+          adInfo.getImgs();
+          // 图片列表中的第一张图片
+          adInfo.getImg_url();
+          } else {
+        // 无广告，不展示
+            }
+        }
+});
+```
+
+##### 参数说明
+
+```java
+ /**
+   * <p>为该广告设置广告id，获取广告数据</p>
+   *
+   * @param adPositionId       广告id
+   * @param onAdStatusListener 广告状态监听
+   */
+ public void getAd(String adPositionId, OnAdStatusListener onAdStatusListener) 
+
+```
+
 ---
+
+
+
+
+
