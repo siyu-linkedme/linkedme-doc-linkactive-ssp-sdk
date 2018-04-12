@@ -3,7 +3,7 @@
 * [LinkActive介绍](README.md)
 * [媒体方接入规范](standard.md)
 
-## 接入文档
+## SDK接入文档
 
 * [iOS平台](ios-sdk.md)
 * [Android平台](android-sdk.md)
