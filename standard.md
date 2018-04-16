@@ -17,5 +17,5 @@
 [Android平台](/android-sdk.md)
 
 ## SDK接入注意事项
-接入前请向LinkedME要SDK包，以及linkedme_key值和ad_position的值。
+接入前请向LinkedME申请SDK包，以及linkedme_key值和ad_position的值。
 
