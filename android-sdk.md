@@ -72,8 +72,10 @@ public static LinkedME getLinkActiveInstance(@NonNull Context context, String li
 ```java
 LinkedME.getLinkActiveInstance(this, "LinkedME后台分配的Link Active SDK key");
 if (BuildConfig.DEBUG) {
-    //设置debug模式下打印LinkedME日志
-    LinkedME.getLinkActiveInstance().setDebug();
+  // 该设置有两个作用：
+  // 1. 打印LinkedME日志
+  // 2. 在此模式下，无论是否是沉默用户都会返回广告
+  LinkedME.getLinkActiveInstance().setDebug();
 }
 ```
 #### 参数说明
@@ -87,10 +89,11 @@ if (BuildConfig.DEBUG) {
 
 ## 添加广告
 广告分以下几种广告形式：
-1. Banner广告：显示多个广告，可按一定的时间间隔自动轮播；
-2. 插屏广告：显示一个大尺寸广告；
-3. 开屏广告：开屏页面广告
-4. 原生广告：用户自定义广告视图
+1. Banner广告：显示多个广告，可按一定的时间间隔自动轮播；广告尺寸：640x100
+2. 插屏广告：显示一个大尺寸广告；广告尺寸：600×500、640×960
+3. 开屏广告：开屏页面广告；广告尺寸：640×960
+4. 原生广告：用户可根据返回的广告素材自定义广告视图；广告尺寸：按顺序返回两张图片：第一张1280x720的大图，第二张120x120的logo图
+5. 原生信息流广告：用户可根据返回的广告素材在信息流中自定义广告视图；广告尺寸：按顺序返回两张图片：第一张1280x720的大图，第二张120x120的logo图
 
 ###  添加Banner广告
 ####  创建Banner广告对象
@@ -265,8 +268,19 @@ LMSplashAd lmSplashAd = new LMSplashAd(this, "4000061_375", container, skip, thi
 方法：
 
 ```java
+/**
+* 创建开屏广告对象
+*
+* @param context            Context
+* @param adPositionId       广告位ID
+* @param adContainer        开屏广告父视图
+* @param skipView           自定义倒计时视图，使用SDK自带视图请传Null或不传
+* @param onSplashAdListener 广告监听
+*/
 public LMSplashAd(Context context, String adPositionId,
                       ViewGroup adContainer, View skipView, @NonNull OnSplashAdListener onSplashAdListener)
+public LMSplashAd(Context context, String adPositionId,
+                      ViewGroup adContainer, @NonNull OnSplashAdListener onSplashAdListener)
 
 ```
 
@@ -393,7 +407,7 @@ public interface OnSplashAdListener {
 
 ```
 
-> 提示：因广告请求需要imei号，请先获取后再请求广告
+> 提示：因广告请求需要imei号，请先获取后再请求广告，否则无法获取到广告
 
 ---
 
@@ -461,7 +475,68 @@ public void getAd(String adPositionId, OnAdStatusListener onAdStatusListener)
 ```
 
 ---
+### 原生信息流广告
+#### 添加原生信息流广告视图
+```xml
+<cc.lkme.linkactive.view.LMADListContainer
+android:id="@+id/lm_ad_container"
+android:layout_width="match_parent"
+android:background="@color/colorPrimary"
+android:layout_height="wrap_content"
+android:visibility="gone"
+>
+<!--用户自定义广告视图嵌入到LMADListContainer视图中-->
+</cc.lkme.linkactive.view.LMADListContainer>
+```
+#### 获取广告数据并自定义广告展现形式
 
+方法：
+
+```java
+public void getAd(String adPositionId,ViewGroup scrollView, OnAdStatusListener onAdStatusListener)
+```
+
+示例：
+```java
+lm_ad_container.getAd("4000061_374", recyclerView, new OnAdStatusListener() {
+@Override 
+public void onGetAd(boolean status, AdInfo adInfo) {
+if (status) {
+// 调用方法显示广告视图
+lm_ad_container.setAdVisibility(true);
+// 以下处理自定义视图展示
+// 标题
+adInfo.getTitle();
+// 副标题
+adInfo.getSub_title();
+// 内容
+adInfo.getContent();
+// 图片列表
+adInfo.getImgs();
+// 图片列表中的第一张图片
+adInfo.getImg_url();
+} else {
+// 无广告，不展示
+}
+}
+});
+```
+
+#### 参数说明
+
+```java
+/**
+* <p>为该广告设置广告id，获取广告数据</p>
+*
+* @param adPositionId 广告id
+* @param scrollView         列表视图
+* @param onAdStatusListener 广告状态监听
+*/
+public void getAd(String adPositionId,ViewGroup scrollView, OnAdStatusListener onAdStatusListener) 
+
+```
+
+---
 
 
 
