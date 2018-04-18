@@ -6,7 +6,7 @@
 ```groovy
 dependencies {
   //注意修改jar包名
-  compile files('libs/LinkedME-Active-SDK-V1.1.0.jar')
+  compile files('libs/LinkedME-Active-SDK-V1.1.1.jar')
 }
 ```
 
