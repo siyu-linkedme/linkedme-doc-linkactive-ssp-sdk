@@ -1,5 +1,4 @@
-#
-LinkActive SDK Android平台集成文档
+# LinkActive SDK Android平台集成文档
 
 ## 引入jar包并依赖
 将jar包复制到项目libs目录下，并添加到项目Module层的build.gradle依赖中，如下示例：
