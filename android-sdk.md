@@ -7,9 +7,10 @@ LinkActive SDK Android平台集成文档
 ```groovy
 dependencies {
 //注意修改jar包名
-compile files('libs/LinkedME-Active-SDK-V1.1.1.jar')
+compile files('libs/LinkedME-Active-SDK-V1.1.3.jar')
 }
 ```
+附：[LinkedME-Active-SDK-V1.1.3.jar](https://github.com/WFC-LinkedME/linkactivedemo/raw/dev-lipeng/app/libs/LinkedME-Active-SDK-V1.1.3.jar)
 
 ## 配置AndroidManifest.xml文件
 ### 配置点击广告后显示h5页面Activity
@@ -71,6 +72,10 @@ public static LinkedME getLinkActiveInstance(@NonNull Context context, String li
 示例：
 ```java
 LinkedME.getLinkActiveInstance(this, "LinkedME后台分配的Link Active SDK key");
+IWXAPI api = WXAPIFactory.createWXAPI(this, "微信分享Key", false);
+api.registerApp("微信分享Key");
+// 支持微信小程序跳转
+LinkedME.getLinkActiveInstance().setIWXAPI(api);
 if (BuildConfig.DEBUG) {
 // 该设置有两个作用：
 // 1. 打印LinkedME日志
