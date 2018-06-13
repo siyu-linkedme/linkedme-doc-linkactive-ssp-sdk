@@ -6,10 +6,10 @@
 ```groovy
 dependencies {
 //注意修改jar包名
-compile files('libs/LinkedME-Active-SDK-V1.1.3.jar')
+compile files('libs/LinkedME-Active-SDK-V1.*.*.jar')
 }
 ```
-附：[LinkedME-Active-SDK-V1.1.3.jar](https://github.com/WFC-LinkedME/linkactivedemo/raw/dev-lipeng/app/libs/LinkedME-Active-SDK-V1.1.3.jar)
+附：[LinkedME-Active-SDK-V1.\*.\*.jar](https://github.com/WFC-LinkedME/linkactivedemo/tree/master/app/libs)
 
 ## 配置AndroidManifest.xml文件
 ### 配置点击广告后显示h5页面Activity
