@@ -466,3 +466,9 @@ public void getAd(String adPositionId, OnAdStatusListener onAdStatusListener)
 ```
 
 ---
+## 混淆
+请添加以下混淆配置：
+```
+# 请不要混淆link active sdk jar包
+-keep class cc.lkme.linkactive.** { *; }
+```
