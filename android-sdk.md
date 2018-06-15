@@ -1,4 +1,5 @@
 # LinkActive SDK Android平台集成文档
+> 新增APP唤起小程序功能，请参考SDK初始化部分。
 
 ## 引入jar包并依赖
 将jar包复制到项目libs目录下，并添加到项目Module层的build.gradle依赖中，如下示例：
