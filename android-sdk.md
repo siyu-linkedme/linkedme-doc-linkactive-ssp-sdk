@@ -8,7 +8,7 @@
 dependencies {
 //注意修改jar包名
 compile files('libs/LinkedME-Active-SDK-V1.*.*.jar')
-// 添加微信SDK以支持微信小程序跳转
+// 添加微信SDK以支持微信小程序跳转，若已添加相关支持，则不可重复添加，切忌！！！
 implementation "com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.1.4"
 }
 ```
