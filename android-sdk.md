@@ -8,6 +8,8 @@
 dependencies {
 //注意修改jar包名
 compile files('libs/LinkedME-Active-SDK-V1.*.*.jar')
+// 添加微信SDK以支持微信小程序跳转
+implementation "com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.1.4"
 }
 ```
 附：[LinkedME-Active-SDK-V1.\*.\*.jar](https://github.com/WFC-LinkedME/linkactivedemo/tree/master/app/libs)
@@ -72,10 +74,6 @@ public static LinkedME getLinkActiveInstance(@NonNull Context context, String li
 示例：
 ```java
 LinkedME.getLinkActiveInstance(this, "LinkedME后台分配的Link Active SDK key");
-IWXAPI api = WXAPIFactory.createWXAPI(this, "微信分享Key", false);
-api.registerApp("微信分享Key");
-// 支持微信小程序跳转
-LinkedME.getLinkActiveInstance().setIWXAPI(api);
 if (BuildConfig.DEBUG) {
 // 该设置有两个作用：
 // 1. 打印LinkedME日志
