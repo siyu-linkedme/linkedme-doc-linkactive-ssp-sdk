@@ -7,5 +7,6 @@
 
 * [iOS平台](ios-sdk.md)
 * [Android平台](android-sdk.md)
+* [Android更新日志](android-update-log.md)
 
 
